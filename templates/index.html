@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Daily (Co)homology Class</title>
+  <link rel="stylesheet" href="/static/style.css" />
+  <script>
+    MathJax = {
+      tex: {
+        inlineMath: [['$', '$']],
+        displayMath: [['$$', '$$']],
+        packages: {'[+]': ['ams']},
+        tags: 'none'
+      },
+      options: { skipHtmlTags: ['script','noscript','style','textarea'] },
+      startup: { ready() { MathJax.startup.defaultReady(); } }
+    };
+  </script>
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml.js" async></script>
+</head>
+<body>
+
+  <!-- ── HEADER ─────────────────────────────────────────────── -->
+  <header>
+    <div class="header-left">
+      <span class="logo">∂</span>
+      <span class="site-title">Daily (Co)homology Class</span>
+    </div>
+    <div class="header-right">
+      <span id="date-display" class="date-label"></span>
+
+      <!-- Light / dark toggle -->
+      <label class="mode-toggle" title="Toggle light / dark mode" aria-label="Toggle colour scheme">
+        <input type="checkbox" id="mode-checkbox" />
+        <span class="mode-track">
+          <span class="mode-thumb"></span>
+        </span>
+        <span class="mode-icons">
+          <span class="icon-sun">☀</span>
+          <span class="icon-moon">☽</span>
+        </span>
+      </label>
+    </div>
+  </header>
+
+  <!-- ── MAIN ───────────────────────────────────────────────── -->
+  <main>
+
+    <!-- Navigation bar -->
+    <nav class="nav-bar">
+      <button id="btn-prev" class="nav-btn" title="Previous day">&#8592; Previous</button>
+      <button id="btn-archive" class="nav-btn nav-btn-secondary" title="Browse all problems">Archive</button>
+      <button id="btn-today" class="nav-btn nav-btn-secondary" title="Go to today">Today</button>
+      <button id="btn-next" class="nav-btn" title="Next day">Next &#8594;</button>
+    </nav>
+
+    <!-- Problem card -->
+    <article id="problem-card" class="problem-card">
+
+      <div class="problem-meta">
+        <span id="badge-difficulty" class="badge badge-easy">easy</span>
+        <span id="badge-type" class="badge badge-type">homology</span>
+        <span id="day-counter" class="day-counter">Day 1 &middot; Problem #1</span>
+      </div>
+
+      <h1 id="problem-title" class="problem-title"></h1>
+
+      <div id="problem-statement" class="problem-statement math-content"></div>
+
+      <div id="tags-row" class="tags-row"></div>
+
+      <!-- Hints section -->
+      <section class="hints-section">
+        <div class="section-header">
+          <span class="section-icon">&#128161;</span>
+          <span class="section-label">Hints</span>
+          <span id="hint-counter" class="hint-counter">0 / 0 revealed</span>
+        </div>
+        <div id="hints-container" class="hints-container"></div>
+        <button id="btn-hint" class="btn-hint">Reveal Next Hint</button>
+      </section>
+
+      <!-- Answer gate -->
+      <section class="answer-gate">
+        <div class="answer-gate-header">
+          <span class="answer-gate-icon">&#10003;</span>
+          <span class="section-label">Your Answer</span>
+        </div>
+
+        <div id="answer-question" class="answer-question math-content"></div>
+
+        <div class="answer-input-row">
+          <input
+            type="number"
+            id="answer-input"
+            class="answer-input"
+            placeholder="integer"
+            step="1"
+            autocomplete="off"
+          />
+          <button id="btn-check" class="btn-check">Check</button>
+        </div>
+
+        <div id="answer-feedback" class="answer-feedback" aria-live="polite"></div>
+
+        <button id="btn-giveup" class="btn-giveup">I give up — show solution</button>
+      </section>
+
+      <!-- Solution (locked until correct answer or give-up) -->
+      <section id="solution-section" class="solution-section hidden">
+        <div class="solution-header">
+          <span class="solution-header-icon">&#128218;</span>
+          <span class="section-label">Solution</span>
+        </div>
+        <div class="solution-answer-label">Answer</div>
+        <div id="solution-answer" class="solution-answer math-content"></div>
+        <ol id="solution-steps" class="solution-steps math-content"></ol>
+      </section>
+
+    </article>
+  </main>
+
+  <!-- ── ARCHIVE MODAL ──────────────────────────────────────── -->
+  <div id="archive-overlay" class="modal-overlay hidden">
+    <div class="modal">
+      <div class="modal-header">
+        <h2 class="modal-title">Problem Archive</h2>
+        <button id="btn-close-archive" class="modal-close">&#215;</button>
+      </div>
+      <div id="archive-list" class="archive-list">
+        <p class="loading-text">Loading&hellip;</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── INIT DATA ───────────────────────────────────────────── -->
+  <script>
+    const INITIAL_PROBLEM = {{ problem_json | safe }};
+    const TODAY_STR       = "{{ today_str }}";
+    const DAY_NUMBER      = {{ day_number }};
+    const TOTAL_PROBLEMS  = {{ total_problems }};
+  </script>
+  <script src="/static/script.js"></script>
+
+</body>
+</html>
