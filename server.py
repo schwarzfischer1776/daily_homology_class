@@ -82,5 +82,5 @@ def api_list():
     return jsonify({"problems": meta, "total": len(_PROBLEMS)})
 
 
-if __name__ == "__main__":
-    app.run(debug=True, port=5001)
+#if __name__ == "__main__":
+#    app.run(debug=True, port=5001)
