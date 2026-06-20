@@ -15,11 +15,11 @@ async function get_messages(){
     const url = "https://lusterofthefirmament-human-gpt.hf.space/api/generate" ; 
 
     const payload = {
-        model: "lfm2.5-thinking:latest", 
-        prompt: input.value , 
-        stream: false,
-        raw: true,  
-        options : {
+        "model": "lfm2.5-thinking:latest", 
+        "prompt": input.value , 
+        "stream": false,
+        "raw": true,  
+        "options" : {
             "num_predict": 3
         }
     }
