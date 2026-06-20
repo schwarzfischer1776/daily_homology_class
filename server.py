@@ -25,6 +25,11 @@ def problem_for_date(d: date):
 
 
 @app.route("/")
+def index_dev():
+    render_template(
+        "index_dev.html"
+    )
+
 def index():
     today = date.today()
     problem = problem_for_date(today)
