@@ -1,8 +1,37 @@
 Ollama test instance 
-<input id="chat input"/> 
+<input id="chat_input"/> 
 <br>
-<div id="chat output"></div>
+<div id="chat_output"></div>
+<button id="get_message">Get messages</button>
 
 <script>
+const get_message = document.getElementById("get_message");
+const input = document.getElementById('chat_input');
+const output = document.getElementById('chat_output');
+
+get_message.addEventListener('click', get_messages); 
+
+async function get_messages(){
+    const url = "https://lusterofthefirmament-human-gpt.hf.space/api/generate" ; 
+
+    const payload = {
+        model: "lfm2.5-thinking:latest", 
+        prompt: input.value , 
+        stream: false,
+        raw: true,  
+        options : {
+            "num_predict": 3
+        }
+    }
+
+    const response = await fetch(url, {
+        method: "POST",
+        body: JSON.stringify(payload),
+        });
+    const data = await response.json(); 
+
+    output.textContent = data.response; 
+    console.log(data.response); 
+}
 
 </script>
