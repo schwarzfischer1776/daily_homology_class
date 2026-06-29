@@ -70,17 +70,6 @@
 
       <div id="tags-row" class="tags-row"></div>
 
-      <!-- Hints section -->
-      <section class="hints-section">
-        <div class="section-header">
-          <span class="section-icon">&#128161;</span>
-          <span class="section-label">Hints</span>
-          <span id="hint-counter" class="hint-counter">0 / 0 revealed</span>
-        </div>
-        <div id="hints-container" class="hints-container"></div>
-        <button id="btn-hint" class="btn-hint">Reveal Next Hint</button>
-      </section>
-
       <!-- Answer gate -->
       <section class="answer-gate">
         <div class="answer-gate-header">
@@ -104,12 +93,12 @@
             />
           </div>
           <div class="answer-field" id="field-expr">
-            <label class="answer-field-label math-content" for="input-expr">$F(X)$</label>
+            <label class="answer-field-label math-content" for="input-expr">$\Upsilon(X)$</label>
             <input
               type="number"
               id="input-expr"
               class="answer-input"
-              placeholder="F"
+              placeholder="Υ"
               step="1"
               autocomplete="off"
             />
@@ -118,19 +107,6 @@
         </div>
 
         <div id="answer-feedback" class="answer-feedback" aria-live="polite"></div>
-
-        <button id="btn-giveup" class="btn-giveup">I give up — show solution</button>
-      </section>
-
-      <!-- Solution (locked until correct answer or give-up) -->
-      <section id="solution-section" class="solution-section hidden">
-        <div class="solution-header">
-          <span class="solution-header-icon">&#128218;</span>
-          <span class="section-label">Solution</span>
-        </div>
-        <div class="solution-answer-label">Answer</div>
-        <div id="solution-answer" class="solution-answer math-content"></div>
-        <ol id="solution-steps" class="solution-steps math-content"></ol>
       </section>
 
     </article>
@@ -153,6 +129,7 @@
   <script>
     const INITIAL_PROBLEM = {{ problem_json | safe }};
     const TODAY_STR       = "{{ today_str }}";
+    const EPOCH_STR       = "{{ epoch_str }}";
     const DAY_NUMBER      = {{ day_number }};
     const TOTAL_PROBLEMS  = {{ total_problems }};
   </script>

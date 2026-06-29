@@ -7,7 +7,8 @@ from targets import TARGETS
 
 app = Flask(__name__)
 
-EPOCH = date(2025, 1, 1)
+# Day 1 of the cycle is today; problem #1 is shown on this date.
+EPOCH = date.today()
 
 MAX_ATTEMPTS = 3
 
@@ -24,12 +25,12 @@ def _build_statement(target):
         ask = (
             r"Since $X$ is infinite-dimensional its Euler characteristic is "
             r"undefined, so evaluate only the Betti-number functional "
-            rf"$$F(X) \;=\; {expr}.$$"
+            rf"$$\Upsilon(X) \;=\; {expr}.$$"
         )
     else:
         ask = (
             r"Compute the Euler characteristic $\chi(X)$, then evaluate the "
-            rf"Betti-number functional $$F(X) \;=\; {expr}.$$"
+            rf"Betti-number functional $$\Upsilon(X) \;=\; {expr}.$$"
         )
     outro = rf" Enter the integer{'' if target['infinite'] else 's'} below — you have {MAX_ATTEMPTS} attempts."
     return intro + ask + outro
@@ -54,6 +55,10 @@ for _p in PROBLEMS:
     # Reframe the task: the player enters chi(X) and the functional value,
     # not the homology groups. The original statement is kept as background.
     _p2["statement"] = _build_statement(_t)
+    # Hints and worked solutions are intentionally not exposed — they would
+    # make the puzzle too easy.
+    _p2.pop("hints", None)
+    _p2.pop("solution", None)
     _PROBLEMS.append(_p2)
 
 
@@ -73,6 +78,7 @@ def index():
         "index.html",
         problem_json=json.dumps(problem),
         today_str=today.isoformat(),
+        epoch_str=EPOCH.isoformat(),
         day_number=day_number,
         total_problems=len(_PROBLEMS),
     )

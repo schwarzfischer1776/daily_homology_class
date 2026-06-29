@@ -1,10 +1,7 @@
 /* ── State ─────────────────────────────────────────────────────── */
 let currentDate    = TODAY_STR;
 let currentDay     = DAY_NUMBER;
-let hintsRevealed  = 0;
-let solutionLocked = true;
 let archiveCache   = null;
-let _currentHints  = [];
 let attemptsLeft   = 3;
 let answered       = false;
 
@@ -17,9 +14,6 @@ const badgeDiff      = document.getElementById("badge-difficulty");
 const badgeType      = document.getElementById("badge-type");
 const dayCounter     = document.getElementById("day-counter");
 const dateDisplay    = document.getElementById("date-display");
-const hintsContainer = document.getElementById("hints-container");
-const hintCounterEl  = document.getElementById("hint-counter");
-const btnHint        = document.getElementById("btn-hint");
 const answerQuestion = document.getElementById("answer-question");
 const fieldEuler     = document.getElementById("field-euler");
 const inputEuler     = document.getElementById("input-euler");
@@ -27,10 +21,6 @@ const inputExpr      = document.getElementById("input-expr");
 const attemptsLeftEl = document.getElementById("attempts-left");
 const btnCheck       = document.getElementById("btn-check");
 const feedback       = document.getElementById("answer-feedback");
-const btnGiveup      = document.getElementById("btn-giveup");
-const solutionSec    = document.getElementById("solution-section");
-const solutionAnswer = document.getElementById("solution-answer");
-const solutionSteps  = document.getElementById("solution-steps");
 const btnPrev        = document.getElementById("btn-prev");
 const btnNext        = document.getElementById("btn-next");
 const btnToday       = document.getElementById("btn-today");
@@ -108,7 +98,6 @@ function lockInputs() {
   inputEuler.disabled = true;
   inputExpr.disabled  = true;
   btnCheck.disabled   = true;
-  btnGiveup.style.display = "none";
 }
 
 function checkAnswer(target) {
@@ -116,7 +105,7 @@ function checkAnswer(target) {
 
   const needEuler = !target.infinite;
 
-  // Parse the expression value (always required).
+  // Parse the functional value (always required).
   const exprRaw = inputExpr.value.trim();
   const exprVal = parseInt(exprRaw, 10);
 
@@ -140,8 +129,7 @@ function checkAnswer(target) {
     markField(inputExpr, true);
     lockInputs();
     updateAttempts();
-    setFeedback("✓ Correct! The solution is now unlocked.", "correct");
-    revealSolution();
+    setFeedback("✓ Correct! Solved.", "correct");
     return;
   }
 
@@ -154,16 +142,15 @@ function checkAnswer(target) {
     answered = true;
     lockInputs();
     updateAttempts();
-    setFeedback("✗ Out of attempts — here is the worked solution.", "wrong");
-    revealSolution();
+    setFeedback("✗ Out of attempts. Come back stronger tomorrow!", "wrong");
     return;
   }
 
   // Hint at which field is wrong without giving the value away.
   let which;
-  if (needEuler && !eulerOk && !exprOk) which = "Both χ(X) and F(X) are off";
+  if (needEuler && !eulerOk && !exprOk) which = "Both χ(X) and Υ(X) are off";
   else if (needEuler && !eulerOk)       which = "χ(X) is off";
-  else                                   which = "F(X) is off";
+  else                                   which = "Υ(X) is off";
   updateAttempts();
   setFeedback(`✗ ${which}. ${attemptsLeft} attempt${attemptsLeft === 1 ? "" : "s"} left.`, "wrong");
 }
@@ -185,25 +172,14 @@ function shakeInput(input) {
   input.classList.add("wrong");
 }
 
-function revealSolution() {
-  solutionLocked = false;
-  solutionSec.classList.remove("hidden");
-  typeset(solutionSec);
-  solutionSec.scrollIntoView({ behavior: "smooth", block: "nearest" });
-}
-
 /* ── Render problem ────────────────────────────────────────────── */
 function renderProblem(data) {
   const { problem, day_number } = data;
   const target = problem.target || {};
 
   // Reset state
-  hintsRevealed  = 0;
-  solutionLocked = true;
-  answered       = false;
-  attemptsLeft   = problem.max_attempts || MAX_ATTEMPTS;
-  solutionSec.classList.add("hidden");
-  hintsContainer.innerHTML = "";
+  answered     = false;
+  attemptsLeft = problem.max_attempts || MAX_ATTEMPTS;
   inputEuler.value = "";
   inputExpr.value  = "";
   inputEuler.disabled = false;
@@ -211,7 +187,6 @@ function renderProblem(data) {
   inputEuler.className = "answer-input";
   inputExpr.className  = "answer-input";
   btnCheck.disabled = false;
-  btnGiveup.style.display = "";
   setFeedback("", "");
 
   // The Euler-characteristic field only applies to finite-dimensional spaces.
@@ -240,33 +215,17 @@ function renderProblem(data) {
     .map(t => `<span class="tag">${escHtml(t)}</span>`)
     .join("");
 
-  // Hints
-  _currentHints = problem.hints || [];
-  updateHintCounter(_currentHints.length);
-  btnHint.disabled    = _currentHints.length === 0;
-  btnHint.textContent = "Reveal Next Hint";
-
   // Answer question — restate the functional next to the input boxes.
   if (target.infinite) {
     answerQuestion.textContent =
-      `Enter the value of the Betti-number functional  $F(X) = ${target.expr_latex}$.`;
+      `Enter the value of the Betti-number functional  $\\Upsilon(X) = ${target.expr_latex}$.`;
   } else {
     answerQuestion.textContent =
-      `Enter the Euler characteristic  $\\chi(X)$  and the value of  $F(X) = ${target.expr_latex}$.`;
+      `Enter the Euler characteristic  $\\chi(X)$  and the value of  $\\Upsilon(X) = ${target.expr_latex}$.`;
   }
-
-  // Solution (pre-populate but keep hidden)
-  solutionAnswer.textContent = problem.solution.answer;
-  solutionSteps.innerHTML = (problem.solution.steps || [])
-    .map(s => `<li>${escHtml(s)}</li>`)
-    .join("");
 
   // Typeset everything
   typeset(card);
-}
-
-function updateHintCounter(total) {
-  hintCounterEl.textContent = `${hintsRevealed} / ${total} revealed`;
 }
 
 /* ── Load problem for date ─────────────────────────────────────── */
@@ -289,23 +248,6 @@ async function loadDate(iso) {
 }
 
 /* ── Events ────────────────────────────────────────────────────── */
-btnHint.addEventListener("click", () => {
-  if (hintsRevealed >= _currentHints.length) return;
-  const hint = _currentHints[hintsRevealed];
-  const div  = document.createElement("div");
-  div.className = "hint-item";
-  // Wrap hint number + text; escHtml to prevent XSS but let MathJax parse $
-  div.innerHTML = `<span class="hint-number">${hintsRevealed + 1}</span>${escHtml(hint)}`;
-  hintsContainer.appendChild(div);
-  typeset(div);
-  hintsRevealed++;
-  updateHintCounter(_currentHints.length);
-  if (hintsRevealed >= _currentHints.length) {
-    btnHint.disabled    = true;
-    btnHint.textContent = "All hints revealed";
-  }
-});
-
 // Check answer on button click or Enter key
 btnCheck.addEventListener("click", () => {
   const problem = currentProblem();
@@ -316,14 +258,6 @@ btnCheck.addEventListener("click", () => {
   el.addEventListener("keydown", e => {
     if (e.key === "Enter") btnCheck.click();
   });
-});
-
-btnGiveup.addEventListener("click", () => {
-  answered = true;
-  lockInputs();
-  updateAttempts();
-  setFeedback("Solution revealed. Come back stronger tomorrow!", "wrong");
-  revealSolution();
 });
 
 // We keep a reference to the current rendered problem
@@ -365,7 +299,7 @@ function renderArchive(problems) {
       const id         = Number(el.dataset.id);
       const targetIdx  = problems.findIndex(p => p.id === id);
       if (targetIdx < 0) return;
-      const epoch           = new Date(2025, 0, 1);
+      const epoch           = isoToDate(EPOCH_STR);
       const today           = isoToDate(TODAY_STR);
       const daysSinceEpoch  = Math.round((today - epoch) / 86400000);
       const cycleStart      = daysSinceEpoch - (daysSinceEpoch % TOTAL_PROBLEMS);
@@ -385,6 +319,5 @@ btnToday.onclick = () => { if (currentDate !== TODAY_STR) loadDate(TODAY_STR); }
 (function init() {
   dateDisplay.textContent = formatDate(TODAY_STR);
   _currentProblem         = INITIAL_PROBLEM;
-  _currentHints           = INITIAL_PROBLEM.hints || [];
   renderProblem({ problem: INITIAL_PROBLEM, day_number: DAY_NUMBER });
 })();
