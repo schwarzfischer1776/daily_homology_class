@@ -1,233 +1,237 @@
-# Target answer for each problem.
-# "euler"  → compute χ(X) (integer, possibly negative)
-# "betti"  → compute β_n = rank H_n(X; Z)  (non-negative integer)
-# value    → the correct integer answer
-# question → short LaTeX string shown in the answer box
+# Target data for each daily problem.
+#
+# For every topological space X the player must enter TWO integers:
+#
+#   1. the Euler characteristic  chi(X)               ("euler")
+#   2. the value of an algebraic FUNCTIONAL of the    ("functional")
+#      Betti numbers  beta_n = rank H_n(X; Z).
+#
+# The functional varies from space to space and is shown (as LaTeX) in the
+# problem statement.  Because it mixes several Betti numbers together it
+# produces a "large" number that cannot be guessed without having computed
+# every Betti number correctly.
+#
+# For infinite-dimensional spaces (RP^infinity, CP^infinity) the Euler
+# characteristic is undefined, so only the functional is requested.
+#
+# Each _DEF entry:
+#   space       LaTeX name of X (without surrounding $)
+#   euler       chi(X) as an int, or None if X is infinite-dimensional
+#   betti       [beta_0, beta_1, ...]  (free ranks; torsion ignored)
+#   expr_latex  the functional, as a LaTeX string in the beta_n
+#   expr_fn     callable(b) -> number computing the functional, where b is the
+#               Betti list zero-padded so any index is safe to read
+#
+# expr_value is computed from expr_fn at import time and asserted to be an
+# integer, so the displayed LaTeX and the checked answer can never drift apart.
 
-TARGETS = {
-    1:  {
-        "type": "euler",
-        "question": r"Compute $\chi(S^1)$.",
-        "value": 0,
-    },
-    2:  {
-        "type": "euler",
-        "question": r"Compute $\chi(S^2)$.",
-        "value": 2,
-    },
-    3:  {
-        "type": "euler",
-        "question": r"Apply the general formula: compute $\chi(S^4)$.",
-        "value": 2,
-    },
-    4:  {
-        "type": "euler",
-        "question": r"Compute $\chi(D^n)$ (your answer should be independent of $n$).",
-        "value": 1,
-    },
-    5:  {
-        "type": "euler",
-        "question": r"Compute $\chi(T^2)$.",
-        "value": 0,
-    },
-    6:  {
-        "type": "euler",
-        "question": r"Compute $\chi(\mathbb{R}P^2)$.",
-        "value": 1,
-    },
-    7:  {
-        "type": "euler",
-        "question": r"Compute $\chi(K)$ for the Klein bottle $K$.",
-        "value": 0,
-    },
-    8:  {
-        "type": "euler",
-        "question": r"Compute $\chi(S^1 \vee S^1)$.",
-        "value": -1,
-    },
-    9:  {
-        "type": "euler",
-        "question": r"Compute $\chi(M)$ for the Möbius band $M$.",
-        "value": 0,
-    },
-    10: {
-        "type": "euler",
-        "question": r"Compute $\chi(S^2)$ (compare with $\chi(S^1)$ to settle the question).",
-        "value": 2,
-    },
-    11: {
-        "type": "betti",
-        "n": 2,
-        "question": r"Compute $\beta_2(T^2) = \operatorname{rank} H_2(T^2;\,\mathbb{Z})$.",
-        "value": 1,
-    },
-    12: {
-        "type": "euler",
-        "question": r"Compute $\chi(\Sigma_3)$ for the closed orientable surface of genus $3$.",
-        "value": -4,
-    },
-    13: {
-        "type": "euler",
-        "question": r"Compute $\chi(S^1 \vee S^2)$.",
-        "value": 1,
-    },
-    14: {
-        "type": "euler",
-        "question": r"Compute $\chi(\mathbb{R}P^1)$.",
-        "value": 0,
-    },
-    15: {
-        "type": "betti",
-        "n": 3,
-        "question": r"Compute $\beta_3(\mathbb{R}P^3) = \operatorname{rank} H_3(\mathbb{R}P^3;\,\mathbb{Z})$.",
-        "value": 1,
-    },
-    16: {
-        "type": "euler",
-        "question": r"Apply the general formula to compute $\chi(\mathbb{R}P^6)$.",
-        "value": 1,
-    },
-    17: {
-        "type": "euler",
-        "question": r"Apply the general formula to compute $\chi(\mathbb{C}P^3)$.",
-        "value": 4,
-    },
-    18: {
-        "type": "euler",
-        "question": r"Use the product formula $\chi(X\times Y)=\chi(X)\chi(Y)$ to compute $\chi(S^2 \times S^4)$.",
-        "value": 4,
-    },
-    19: {
-        "type": "betti",
-        "n": 2,
-        "question": r"Compute $\beta_2(T^3) = \operatorname{rank} H_2(T^3;\,\mathbb{Z})$.",
-        "value": 3,
-    },
-    20: {
-        "type": "betti",
-        "n": 1,
-        "question": r"Compute $\beta_1(S^1\times\mathbb{R}P^2) = \operatorname{rank} H_1(S^1\times\mathbb{R}P^2;\,\mathbb{Z})$.",
-        "value": 1,
-    },
-    21: {
-        "type": "euler",
-        "question": r"Compute $\chi(N_4)$ for the non-orientable surface with $4$ crosscaps.",
-        "value": -2,
-    },
-    22: {
-        "type": "betti",
-        "n": 5,
-        "question": r"Compute $\beta_5(D^5, S^4) = \operatorname{rank} H_5(D^5, S^4;\,\mathbb{Z})$.",
-        "value": 1,
-    },
-    23: {
-        "type": "euler",
-        "question": r"Use Mayer–Vietoris to compute $\chi(S^6)$.",
-        "value": 2,
-    },
-    24: {
-        "type": "euler",
-        "question": r"Compute $\chi(\mathbb{R}P^2)$ (compare with $\chi(T^2)=0$ to settle the homeomorphism question).",
-        "value": 1,
-    },
-    25: {
-        "type": "betti",
-        "n": 3,
-        "question": r"Compute $\beta_3(SO(3)) = \operatorname{rank} H_3(SO(3);\,\mathbb{Z})$.",
-        "value": 1,
-    },
-    26: {
-        "type": "euler",
-        "question": r"Compute $\chi(\mathbb{R}P^4)$.",
-        "value": 1,
-    },
-    27: {
-        "type": "euler",
-        "question": r"Compute $\chi(\mathbb{C}P^2)$.",
-        "value": 3,
-    },
-    28: {
-        "type": "betti",
-        "n": 1,
-        "question": r"Compute $\beta_1(K) = \operatorname{rank} H_1(K;\,\mathbb{Z})$ (free rank only, ignore torsion).",
-        "value": 1,
-    },
-    29: {
-        "type": "euler",
-        "question": r"Compute $\chi(\mathbb{C}P^4)$ using the ring structure you found.",
-        "value": 5,
-    },
-    30: {
-        "type": "betti",
-        "n": 1,
-        "question": r"Compute $\beta_1(T^2) = \operatorname{rank} H^1(T^2;\,\mathbb{Z})$.",
-        "value": 2,
-    },
-    31: {
-        "type": "euler",
-        "question": r"Compute $\chi(\mathbb{R}P^4)$ (the Euler characteristic is coefficient-independent).",
-        "value": 1,
-    },
-    32: {
-        "type": "betti",
-        "n": 3,
-        "question": r"Compute $\beta_3(L(5,2)) = \operatorname{rank} H_3(L(5,2);\,\mathbb{Z})$.",
-        "value": 1,
-    },
-    33: {
-        "type": "betti",
-        "n": 1,
-        "question": r"Compute $\beta_1(L(7,1)) = \operatorname{rank} H_1(L(7,1);\,\mathbb{Z})$ (free rank; torsion does not count).",
-        "value": 0,
-    },
-    34: {
-        "type": "betti",
-        "n": 5,
-        "question": r"Compute $\beta_5(\mathbb{R}P^\infty) = \operatorname{rank} H_5(\mathbb{R}P^\infty;\,\mathbb{Z})$ (Betti number = free rank).",
-        "value": 0,
-    },
-    35: {
-        "type": "betti",
-        "n": 6,
-        "question": r"Compute $\beta_6(\mathbb{C}P^\infty) = \operatorname{rank} H_6(\mathbb{C}P^\infty;\,\mathbb{Z})$.",
-        "value": 1,
-    },
-    36: {
-        "type": "betti",
-        "n": 3,
-        "question": r"Compute $\beta_3(S^3 \times S^3) = \operatorname{rank} H_3(S^3\times S^3;\,\mathbb{Z})$.",
-        "value": 2,
-    },
-    37: {
-        "type": "betti",
-        "n": 2,
-        "question": r"Compute $\beta_2(\mathbb{C}P^2) = \operatorname{rank} H_2(\mathbb{C}P^2;\,\mathbb{Z})$ (compare with $\beta_2(S^4)=0$).",
-        "value": 1,
-    },
-    38: {
-        "type": "euler",
-        "question": r"Compute $\chi(K3)$ for the $K3$ surface.",
-        "value": 24,
-    },
-    39: {
-        "type": "euler",
-        "question": r"Apply the formula you proved: compute $\chi(\Sigma_4)$ for the genus-$4$ surface.",
-        "value": -6,
-    },
-    40: {
-        "type": "euler",
-        "question": r"Apply Poincaré duality: compute $\chi(\mathbb{C}P^3)$.",
-        "value": 4,
-    },
-    41: {
-        "type": "betti",
-        "n": 1,
-        "question": r"Compute $\beta_1(F(\mathbb{R}^2,2)) = \operatorname{rank} H_1(F(\mathbb{R}^2,2);\,\mathbb{Z})$.",
-        "value": 1,
-    },
-    42: {
-        "type": "euler",
-        "question": r"Compute $\chi(\mathbb{C}P^2 \,\#\, \mathbb{C}P^2)$.",
-        "value": 4,
-    },
+import math
+
+_sqrt = math.sqrt
+
+# pid : (space, euler, betti, expr_latex, expr_fn)
+_DEFS = {
+    1: (r"S^1", 0, [1, 1],
+        r"11\,\beta_0 + 13\,\beta_1 + 5\,\beta_0\beta_1",
+        lambda b: 11*b[0] + 13*b[1] + 5*b[0]*b[1]),
+
+    2: (r"S^2", 2, [1, 0, 1],
+        r"7\,\beta_0 + 12\,\beta_1 + 19\,\beta_2 + 3\,\beta_2^2",
+        lambda b: 7*b[0] + 12*b[1] + 19*b[2] + 3*b[2]**2),
+
+    3: (r"S^4", 2, [1, 0, 0, 0, 1],
+        r"5\,\beta_0 + 6\,\beta_1 + 7\,\beta_2 + 8\,\beta_3 + 9\,\beta_4 + 4\,\beta_4^2",
+        lambda b: 5*b[0] + 6*b[1] + 7*b[2] + 8*b[3] + 9*b[4] + 4*b[4]**2),
+
+    4: (r"D^n", 1, [1],
+        r"17\,\beta_0 + 6\,\beta_0^2",
+        lambda b: 17*b[0] + 6*b[0]**2),
+
+    5: (r"T^2", 0, [1, 2, 1],
+        r"7\,\beta_0 + \sqrt{9\,\beta_1^2 + 24\,\beta_1\beta_2 + 16\,\beta_2^2}",
+        lambda b: 7*b[0] + _sqrt(9*b[1]**2 + 24*b[1]*b[2] + 16*b[2]**2)),
+
+    6: (r"\mathbb{R}P^2", 1, [1, 0, 0],
+        r"14\,\beta_0 + 9\,\beta_1 + 11\,\beta_2 + 2\,\beta_1\beta_2",
+        lambda b: 14*b[0] + 9*b[1] + 11*b[2] + 2*b[1]*b[2]),
+
+    7: (r"K", 0, [1, 1, 0],
+        r"10\,\beta_0 + 12\,\beta_1 + 15\,\beta_2 + \beta_1^2",
+        lambda b: 10*b[0] + 12*b[1] + 15*b[2] + b[1]**2),
+
+    8: (r"S^1 \vee S^1", -1, [1, 2],
+        r"9\,\beta_0 + 10\,\beta_1 + 3\,\beta_1^2",
+        lambda b: 9*b[0] + 10*b[1] + 3*b[1]**2),
+
+    9: (r"M", 0, [1, 1],
+        r"13\,\beta_0 + 8\,\beta_1 + 4\,\beta_0\beta_1",
+        lambda b: 13*b[0] + 8*b[1] + 4*b[0]*b[1]),
+
+    10: (r"S^2", 2, [1, 0, 1],
+         r"6\,\beta_0 + 15\,\beta_1 + 21\,\beta_2 + 2\,\beta_2^2",
+         lambda b: 6*b[0] + 15*b[1] + 21*b[2] + 2*b[2]**2),
+
+    11: (r"T^2", 0, [1, 2, 1],
+         r"4\,\beta_0 + 7\,\beta_1 + 9\,\beta_2 + 2\,\beta_1^2",
+         lambda b: 4*b[0] + 7*b[1] + 9*b[2] + 2*b[1]**2),
+
+    12: (r"\Sigma_3", -4, [1, 6, 1],
+         r"2\,\beta_0 + 3\,\beta_1 + 5\,\beta_2 + \beta_1^2",
+         lambda b: 2*b[0] + 3*b[1] + 5*b[2] + b[1]**2),
+
+    13: (r"S^1 \vee S^2", 1, [1, 1, 1],
+         r"8\,\beta_0 + 11\,\beta_1 + 13\,\beta_2 + 3\,\beta_1\beta_2",
+         lambda b: 8*b[0] + 11*b[1] + 13*b[2] + 3*b[1]*b[2]),
+
+    14: (r"\mathbb{R}P^1", 0, [1, 1],
+         r"12\,\beta_0 + 14\,\beta_1 + 2\,\beta_0\beta_1",
+         lambda b: 12*b[0] + 14*b[1] + 2*b[0]*b[1]),
+
+    15: (r"\mathbb{R}P^3", 0, [1, 0, 0, 1],
+         r"5\,\beta_0 + 7\,\beta_1 + 9\,\beta_2 + 11\,\beta_3 + 4\,\beta_3^2",
+         lambda b: 5*b[0] + 7*b[1] + 9*b[2] + 11*b[3] + 4*b[3]**2),
+
+    16: (r"\mathbb{R}P^6", 1, [1, 0, 0, 0, 0, 0, 0],
+         r"19\,\beta_0 + 2\,\beta_1 + 3\,\beta_2 + 4\,\beta_3 + 5\,\beta_4 + 6\,\beta_5 + 7\,\beta_6",
+         lambda b: 19*b[0] + 2*b[1] + 3*b[2] + 4*b[3] + 5*b[4] + 6*b[5] + 7*b[6]),
+
+    17: (r"\mathbb{C}P^3", 4, [1, 0, 1, 0, 1, 0, 1],
+         r"3\,\beta_0 + 4\,\beta_1 + \sqrt{4\,\beta_2^2 + 12\,\beta_2\beta_4 + 9\,\beta_4^2} + 6\,\beta_3 + 8\,\beta_5 + 10\,\beta_6",
+         lambda b: 3*b[0] + 4*b[1] + _sqrt(4*b[2]**2 + 12*b[2]*b[4] + 9*b[4]**2) + 6*b[3] + 8*b[5] + 10*b[6]),
+
+    18: (r"S^2 \times S^4", 4, [1, 0, 1, 0, 1, 0, 1],
+         r"2\,\beta_0 + 3\,\beta_1 + 4\,\beta_2 + 5\,\beta_3 + 6\,\beta_4 + 7\,\beta_5 + 8\,\beta_6",
+         lambda b: 2*b[0] + 3*b[1] + 4*b[2] + 5*b[3] + 6*b[4] + 7*b[5] + 8*b[6]),
+
+    19: (r"T^3", 0, [1, 3, 3, 1],
+         r"\dfrac{2\,\beta_1^2 + 4\,\beta_2^2 + 6\,\beta_3}{1 + \beta_0}",
+         lambda b: (2*b[1]**2 + 4*b[2]**2 + 6*b[3]) / (1 + b[0])),
+
+    20: (r"S^1 \times \mathbb{R}P^2", 0, [1, 1, 0],
+         r"11\,\beta_0 + 13\,\beta_1 + 17\,\beta_2 + 2\,\beta_1^2",
+         lambda b: 11*b[0] + 13*b[1] + 17*b[2] + 2*b[1]**2),
+
+    21: (r"N_4", -2, [1, 3, 0],
+         r"4\,\beta_0 + 6\,\beta_1 + 8\,\beta_2 + \beta_1^2",
+         lambda b: 4*b[0] + 6*b[1] + 8*b[2] + b[1]**2),
+
+    22: (r"(D^5,\, S^4)", -1, [0, 0, 0, 0, 0, 1],
+         r"2\,\beta_0 + 3\,\beta_1 + 4\,\beta_2 + 5\,\beta_3 + 6\,\beta_4 + 7\,\beta_5 + 5\,\beta_5^2",
+         lambda b: 2*b[0] + 3*b[1] + 4*b[2] + 5*b[3] + 6*b[4] + 7*b[5] + 5*b[5]**2),
+
+    23: (r"S^6", 2, [1, 0, 0, 0, 0, 0, 1],
+         r"3\,\beta_0 + 2\,\beta_1 + 2\,\beta_2 + 2\,\beta_3 + 2\,\beta_4 + 2\,\beta_5 + 13\,\beta_6 + 4\,\beta_6^2",
+         lambda b: 3*b[0] + 2*b[1] + 2*b[2] + 2*b[3] + 2*b[4] + 2*b[5] + 13*b[6] + 4*b[6]**2),
+
+    24: (r"\mathbb{R}P^2", 1, [1, 0, 0],
+         r"16\,\beta_0 + 7\,\beta_1 + 9\,\beta_2 + 3\,\beta_1\beta_2",
+         lambda b: 16*b[0] + 7*b[1] + 9*b[2] + 3*b[1]*b[2]),
+
+    25: (r"SO(3)", 0, [1, 0, 0, 1],
+         r"6\,\beta_0 + 8\,\beta_1 + 10\,\beta_2 + 12\,\beta_3 + 2\,\beta_3^2",
+         lambda b: 6*b[0] + 8*b[1] + 10*b[2] + 12*b[3] + 2*b[3]**2),
+
+    26: (r"\mathbb{R}P^4", 1, [1, 0, 0, 0, 0],
+         r"21\,\beta_0 + 2\,\beta_1 + 3\,\beta_2 + 4\,\beta_3 + 5\,\beta_4",
+         lambda b: 21*b[0] + 2*b[1] + 3*b[2] + 4*b[3] + 5*b[4]),
+
+    27: (r"\mathbb{C}P^2", 3, [1, 0, 1, 0, 1],
+         r"\dfrac{4\,\beta_0 + 2\,\beta_1 + 8\,\beta_2 + 2\,\beta_3 + 6\,\beta_4}{1 + \beta_2}",
+         lambda b: (4*b[0] + 2*b[1] + 8*b[2] + 2*b[3] + 6*b[4]) / (1 + b[2])),
+
+    28: (r"K", 0, [1, 1, 0],
+         r"9\,\beta_0 + 11\,\beta_1 + 13\,\beta_2 + 2\,\beta_0\beta_1",
+         lambda b: 9*b[0] + 11*b[1] + 13*b[2] + 2*b[0]*b[1]),
+
+    29: (r"\mathbb{C}P^4", 5, [1, 0, 1, 0, 1, 0, 1, 0, 1],
+         r"2\,\beta_0 + 3\,\beta_2 + 4\,\beta_4 + 5\,\beta_6 + 6\,\beta_8 + (\beta_1+\beta_3+\beta_5+\beta_7)",
+         lambda b: 2*b[0] + 3*b[2] + 4*b[4] + 5*b[6] + 6*b[8] + (b[1]+b[3]+b[5]+b[7])),
+
+    30: (r"T^2", 0, [1, 2, 1],
+         r"5\,\beta_0 + 6\,\beta_1 + 7\,\beta_2 + 2\,\beta_1\beta_2",
+         lambda b: 5*b[0] + 6*b[1] + 7*b[2] + 2*b[1]*b[2]),
+
+    31: (r"\mathbb{R}P^4", 1, [1, 0, 0, 0, 0],
+         r"23\,\beta_0 + 2\,\beta_1 + 3\,\beta_2 + 4\,\beta_3 + 5\,\beta_4",
+         lambda b: 23*b[0] + 2*b[1] + 3*b[2] + 4*b[3] + 5*b[4]),
+
+    32: (r"L(5,2)", 0, [1, 0, 0, 1],
+         r"7\,\beta_0 + 9\,\beta_1 + 11\,\beta_2 + 13\,\beta_3",
+         lambda b: 7*b[0] + 9*b[1] + 11*b[2] + 13*b[3]),
+
+    33: (r"L(7,1)", 0, [1, 0, 0, 1],
+         r"8\,\beta_0 + 10\,\beta_1 + 12\,\beta_2 + 14\,\beta_3",
+         lambda b: 8*b[0] + 10*b[1] + 12*b[2] + 14*b[3]),
+
+    34: (r"\mathbb{R}P^\infty", None, [1, 0, 0, 0, 0, 0, 0],
+         r"15\,\beta_0 + 2\,\beta_1 + 3\,\beta_2 + 4\,\beta_3 + 5\,\beta_4 + 6\,\beta_5 + 7\,\beta_6",
+         lambda b: 15*b[0] + 2*b[1] + 3*b[2] + 4*b[3] + 5*b[4] + 6*b[5] + 7*b[6]),
+
+    35: (r"\mathbb{C}P^\infty", None, [1, 0, 1, 0, 1, 0, 1],
+         r"2\,\beta_0 + 3\,\beta_1 + 4\,\beta_2 + 5\,\beta_3 + 6\,\beta_4 + 7\,\beta_5 + 8\,\beta_6",
+         lambda b: 2*b[0] + 3*b[1] + 4*b[2] + 5*b[3] + 6*b[4] + 7*b[5] + 8*b[6]),
+
+    36: (r"S^3 \times S^3", 0, [1, 0, 0, 2, 0, 0, 1],
+         r"3\,\beta_0 + 2\,\beta_1 + 2\,\beta_2 + 5\,\beta_3 + 2\,\beta_4 + 2\,\beta_5 + 7\,\beta_6 + \beta_3^2",
+         lambda b: 3*b[0] + 2*b[1] + 2*b[2] + 5*b[3] + 2*b[4] + 2*b[5] + 7*b[6] + b[3]**2),
+
+    37: (r"\mathbb{C}P^2", 3, [1, 0, 1, 0, 1],
+         r"6\,\beta_0 + 7\,\beta_1 + 8\,\beta_2 + 9\,\beta_3 + 10\,\beta_4",
+         lambda b: 6*b[0] + 7*b[1] + 8*b[2] + 9*b[3] + 10*b[4]),
+
+    38: (r"K3", 24, [1, 0, 22, 0, 1],
+         r"\dfrac{2\,\beta_2 + 4\,\beta_4 + 2\,\beta_1 + 2\,\beta_3}{1 + \beta_0}",
+         lambda b: (2*b[2] + 4*b[4] + 2*b[1] + 2*b[3]) / (1 + b[0])),
+
+    39: (r"\Sigma_4", -6, [1, 8, 1],
+         r"2\,\beta_0 + 3\,\beta_1 + 5\,\beta_2 + \beta_1^2",
+         lambda b: 2*b[0] + 3*b[1] + 5*b[2] + b[1]**2),
+
+    40: (r"\mathbb{C}P^3", 4, [1, 0, 1, 0, 1, 0, 1],
+         r"2\,\beta_0 + 2\,\beta_1 + 4\,\beta_2 + 2\,\beta_3 + 6\,\beta_4 + 2\,\beta_5 + 8\,\beta_6",
+         lambda b: 2*b[0] + 2*b[1] + 4*b[2] + 2*b[3] + 6*b[4] + 2*b[5] + 8*b[6]),
+
+    41: (r"F(\mathbb{R}^2, 2)", 0, [1, 1],
+         r"17\,\beta_0 + 19\,\beta_1 + 4\,\beta_0\beta_1",
+         lambda b: 17*b[0] + 19*b[1] + 4*b[0]*b[1]),
+
+    42: (r"\mathbb{C}P^2 \,\#\, \mathbb{C}P^2", 4, [1, 0, 2, 0, 1],
+         r"3\,\beta_0 + 2\,\beta_1 + 5\,\beta_2 + 2\,\beta_3 + 7\,\beta_4 + \beta_2^2",
+         lambda b: 3*b[0] + 2*b[1] + 5*b[2] + 2*b[3] + 7*b[4] + b[2]**2),
 }
+
+
+def _pad(betti, n=16):
+    return list(betti) + [0] * (n - len(betti))
+
+
+def _build():
+    targets = {}
+    for pid, (space, euler, betti, expr_latex, expr_fn) in _DEFS.items():
+        raw = expr_fn(_pad(betti))
+        val = round(raw)
+        if abs(raw - val) > 1e-9:
+            raise ValueError(
+                f"Problem {pid}: functional is not integer-valued ({raw})."
+            )
+        targets[pid] = {
+            "space": space,
+            "euler": euler,                 # int or None (infinite-dimensional)
+            "betti": list(betti),
+            "expr_latex": expr_latex,
+            "expr_value": int(val),
+            "infinite": euler is None,
+        }
+    return targets
+
+
+TARGETS = _build()
+
+
+if __name__ == "__main__":
+    for pid in sorted(TARGETS):
+        t = TARGETS[pid]
+        chi = "undefined" if t["euler"] is None else t["euler"]
+        print(f"#{pid:>2}  X = {t['space']:<24}  "
+              f"chi = {chi!s:<9}  betti = {t['betti']!s:<18}  "
+              f"F = {t['expr_value']}")

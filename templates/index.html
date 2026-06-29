@@ -86,19 +86,34 @@
         <div class="answer-gate-header">
           <span class="answer-gate-icon">&#10003;</span>
           <span class="section-label">Your Answer</span>
+          <span id="attempts-left" class="attempts-left"></span>
         </div>
 
         <div id="answer-question" class="answer-question math-content"></div>
 
-        <div class="answer-input-row">
-          <input
-            type="number"
-            id="answer-input"
-            class="answer-input"
-            placeholder="integer"
-            step="1"
-            autocomplete="off"
-          />
+        <div class="answer-fields">
+          <div class="answer-field" id="field-euler">
+            <label class="answer-field-label math-content" for="input-euler">$\chi(X)$</label>
+            <input
+              type="number"
+              id="input-euler"
+              class="answer-input"
+              placeholder="χ"
+              step="1"
+              autocomplete="off"
+            />
+          </div>
+          <div class="answer-field" id="field-expr">
+            <label class="answer-field-label math-content" for="input-expr">$F(X)$</label>
+            <input
+              type="number"
+              id="input-expr"
+              class="answer-input"
+              placeholder="F"
+              step="1"
+              autocomplete="off"
+            />
+          </div>
           <button id="btn-check" class="btn-check">Check</button>
         </div>
 

@@ -396,6 +396,43 @@ main {
   margin-bottom: 12px;
 }
 
+/* Two-field answer layout: χ(X) and F(X), plus the Check button. */
+.answer-fields {
+  display: flex;
+  gap: 14px;
+  align-items: flex-end;
+  flex-wrap: wrap;
+  margin-bottom: 12px;
+}
+
+.answer-field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-width: 110px;
+}
+
+.answer-field-label {
+  font-size: 14px;
+  color: var(--text-dim);
+  font-weight: 600;
+}
+
+.answer-fields .answer-input { width: 100%; flex: none; }
+
+.answer-fields .btn-check { align-self: stretch; height: 46px; }
+
+.attempts-left {
+  margin-left: auto;
+  font-size: 13px;
+  font-family: sans-serif;
+  font-weight: 600;
+  color: var(--text-dim);
+}
+
+.attempts-left.low { color: var(--red); }
+
 .answer-input {
   flex: 1;
   min-width: 0;

@@ -5,6 +5,8 @@ let hintsRevealed  = 0;
 let solutionLocked = true;
 let archiveCache   = null;
 let _currentHints  = [];
+let attemptsLeft   = 3;
+let answered       = false;
 
 /* ── DOM refs ──────────────────────────────────────────────────── */
 const card           = document.getElementById("problem-card");
@@ -19,7 +21,10 @@ const hintsContainer = document.getElementById("hints-container");
 const hintCounterEl  = document.getElementById("hint-counter");
 const btnHint        = document.getElementById("btn-hint");
 const answerQuestion = document.getElementById("answer-question");
-const answerInput    = document.getElementById("answer-input");
+const fieldEuler     = document.getElementById("field-euler");
+const inputEuler     = document.getElementById("input-euler");
+const inputExpr      = document.getElementById("input-expr");
+const attemptsLeftEl = document.getElementById("attempts-left");
 const btnCheck       = document.getElementById("btn-check");
 const feedback       = document.getElementById("answer-feedback");
 const btnGiveup      = document.getElementById("btn-giveup");
@@ -90,34 +95,83 @@ async function typeset(el) {
 }
 
 /* ── Answer checking ───────────────────────────────────────────── */
-function checkAnswer(target) {
-  const raw = answerInput.value.trim();
-  if (raw === "") return;
+const MAX_ATTEMPTS = 3;
 
-  const entered = parseInt(raw, 10);
-  if (isNaN(entered)) {
-    setFeedback("Please enter an integer.", "wrong");
-    shakeInput();
+function updateAttempts() {
+  if (answered) { attemptsLeftEl.textContent = ""; return; }
+  const n = attemptsLeft;
+  attemptsLeftEl.textContent = `${n} attempt${n === 1 ? "" : "s"} left`;
+  attemptsLeftEl.classList.toggle("low", n <= 1);
+}
+
+function lockInputs() {
+  inputEuler.disabled = true;
+  inputExpr.disabled  = true;
+  btnCheck.disabled   = true;
+  btnGiveup.style.display = "none";
+}
+
+function checkAnswer(target) {
+  if (answered || attemptsLeft <= 0) return;
+
+  const needEuler = !target.infinite;
+
+  // Parse the expression value (always required).
+  const exprRaw = inputExpr.value.trim();
+  const exprVal = parseInt(exprRaw, 10);
+
+  // Parse the Euler characteristic (only for finite-dimensional spaces).
+  const eulerRaw = inputEuler.value.trim();
+  const eulerVal = parseInt(eulerRaw, 10);
+
+  if (exprRaw === "" || isNaN(exprVal) || (needEuler && (eulerRaw === "" || isNaN(eulerVal)))) {
+    setFeedback("Please enter an integer in each field.", "wrong");
+    if (needEuler && (eulerRaw === "" || isNaN(eulerVal))) shakeInput(inputEuler);
+    if (exprRaw === "" || isNaN(exprVal)) shakeInput(inputExpr);
     return;
   }
 
-  if (entered === target.value) {
-    // Correct!
-    answerInput.classList.remove("wrong");
-    answerInput.classList.add("correct");
-    answerInput.disabled = true;
-    btnCheck.disabled = true;
-    btnGiveup.style.display = "none";
+  const eulerOk = !needEuler || eulerVal === target.euler;
+  const exprOk  = exprVal === target.expr_value;
+
+  if (eulerOk && exprOk) {
+    answered = true;
+    markField(inputEuler, needEuler ? true : null);
+    markField(inputExpr, true);
+    lockInputs();
+    updateAttempts();
     setFeedback("✓ Correct! The solution is now unlocked.", "correct");
     revealSolution();
-  } else {
-    answerInput.classList.remove("correct");
-    answerInput.classList.add("wrong");
-    shakeInput();
-    setFeedback("✗ Not quite — try again.", "wrong");
-    // Remove wrong class after animation
-    setTimeout(() => answerInput.classList.remove("wrong"), 400);
+    return;
   }
+
+  // Wrong — consume one attempt.
+  attemptsLeft--;
+  if (needEuler) markField(inputEuler, eulerOk ? true : false);
+  markField(inputExpr, exprOk ? true : false);
+
+  if (attemptsLeft <= 0) {
+    answered = true;
+    lockInputs();
+    updateAttempts();
+    setFeedback("✗ Out of attempts — here is the worked solution.", "wrong");
+    revealSolution();
+    return;
+  }
+
+  // Hint at which field is wrong without giving the value away.
+  let which;
+  if (needEuler && !eulerOk && !exprOk) which = "Both χ(X) and F(X) are off";
+  else if (needEuler && !eulerOk)       which = "χ(X) is off";
+  else                                   which = "F(X) is off";
+  updateAttempts();
+  setFeedback(`✗ ${which}. ${attemptsLeft} attempt${attemptsLeft === 1 ? "" : "s"} left.`, "wrong");
+}
+
+function markField(input, ok) {
+  input.classList.remove("correct", "wrong");
+  if (ok === true)  input.classList.add("correct");
+  if (ok === false) { shakeInput(input); setTimeout(() => input.classList.remove("wrong"), 400); }
 }
 
 function setFeedback(msg, cls) {
@@ -125,10 +179,10 @@ function setFeedback(msg, cls) {
   feedback.className = "answer-feedback " + (cls || "");
 }
 
-function shakeInput() {
-  answerInput.classList.remove("wrong");
-  void answerInput.offsetWidth; // reflow to restart animation
-  answerInput.classList.add("wrong");
+function shakeInput(input) {
+  input.classList.remove("wrong");
+  void input.offsetWidth; // reflow to restart animation
+  input.classList.add("wrong");
 }
 
 function revealSolution() {
@@ -146,14 +200,23 @@ function renderProblem(data) {
   // Reset state
   hintsRevealed  = 0;
   solutionLocked = true;
+  answered       = false;
+  attemptsLeft   = problem.max_attempts || MAX_ATTEMPTS;
   solutionSec.classList.add("hidden");
   hintsContainer.innerHTML = "";
-  answerInput.value = "";
-  answerInput.disabled = false;
-  answerInput.className = "answer-input";
+  inputEuler.value = "";
+  inputExpr.value  = "";
+  inputEuler.disabled = false;
+  inputExpr.disabled  = false;
+  inputEuler.className = "answer-input";
+  inputExpr.className  = "answer-input";
   btnCheck.disabled = false;
   btnGiveup.style.display = "";
   setFeedback("", "");
+
+  // The Euler-characteristic field only applies to finite-dimensional spaces.
+  fieldEuler.style.display = target.infinite ? "none" : "";
+  updateAttempts();
 
   // Meta
   badgeDiff.textContent = problem.difficulty;
@@ -183,8 +246,14 @@ function renderProblem(data) {
   btnHint.disabled    = _currentHints.length === 0;
   btnHint.textContent = "Reveal Next Hint";
 
-  // Answer question
-  answerQuestion.textContent = target.question || "Compute the requested invariant.";
+  // Answer question — restate the functional next to the input boxes.
+  if (target.infinite) {
+    answerQuestion.textContent =
+      `Enter the value of the Betti-number functional  $F(X) = ${target.expr_latex}$.`;
+  } else {
+    answerQuestion.textContent =
+      `Enter the Euler characteristic  $\\chi(X)$  and the value of  $F(X) = ${target.expr_latex}$.`;
+  }
 
   // Solution (pre-populate but keep hidden)
   solutionAnswer.textContent = problem.solution.answer;
@@ -243,14 +312,16 @@ btnCheck.addEventListener("click", () => {
   if (problem) checkAnswer(problem.target);
 });
 
-answerInput.addEventListener("keydown", e => {
-  if (e.key === "Enter") btnCheck.click();
+[inputEuler, inputExpr].forEach(el => {
+  el.addEventListener("keydown", e => {
+    if (e.key === "Enter") btnCheck.click();
+  });
 });
 
 btnGiveup.addEventListener("click", () => {
-  answerInput.disabled = true;
-  btnCheck.disabled    = true;
-  btnGiveup.style.display = "none";
+  answered = true;
+  lockInputs();
+  updateAttempts();
   setFeedback("Solution revealed. Come back stronger tomorrow!", "wrong");
   revealSolution();
 });

@@ -9,11 +9,51 @@ app = Flask(__name__)
 
 EPOCH = date(2025, 1, 1)
 
+MAX_ATTEMPTS = 3
+
+
+def _build_statement(target):
+    """Generate the player-facing task: compute chi(X) and the Betti functional."""
+    space = target["space"]
+    expr = target["expr_latex"]
+    intro = (
+        rf"Let $X = {space}$, and write $\beta_n = \operatorname{{rank}} "
+        rf"H_n(X;\,\mathbb{{Z}})$ for its Betti numbers. "
+    )
+    if target["infinite"]:
+        ask = (
+            r"Since $X$ is infinite-dimensional its Euler characteristic is "
+            r"undefined, so evaluate only the Betti-number functional "
+            rf"$$F(X) \;=\; {expr}.$$"
+        )
+    else:
+        ask = (
+            r"Compute the Euler characteristic $\chi(X)$, then evaluate the "
+            rf"Betti-number functional $$F(X) \;=\; {expr}.$$"
+        )
+    outro = rf" Enter the integer{'' if target['infinite'] else 's'} below — you have {MAX_ATTEMPTS} attempts."
+    return intro + ask + outro
+
+
 # Merge target info into a deep copy of each problem so the originals are untouched.
+_DEFAULT_TARGET = {
+    "space": "X",
+    "euler": 0,
+    "betti": [],
+    "expr_latex": r"\beta_0",
+    "expr_value": 0,
+    "infinite": False,
+}
+
 _PROBLEMS = []
 for _p in PROBLEMS:
     _p2 = copy.deepcopy(_p)
-    _p2["target"] = TARGETS.get(_p2["id"], {"type": "euler", "question": r"Compute $\chi(X)$.", "value": 0})
+    _t = TARGETS.get(_p2["id"], _DEFAULT_TARGET)
+    _p2["target"] = _t
+    _p2["max_attempts"] = MAX_ATTEMPTS
+    # Reframe the task: the player enters chi(X) and the functional value,
+    # not the homology groups. The original statement is kept as background.
+    _p2["statement"] = _build_statement(_t)
     _PROBLEMS.append(_p2)
 
 
@@ -25,11 +65,6 @@ def problem_for_date(d: date):
 
 
 @app.route("/")
-def index_dev():
-    return render_template(
-        "index_dev.html"
-    )
-
 def index():
     today = date.today()
     problem = problem_for_date(today)
@@ -87,5 +122,5 @@ def api_list():
     return jsonify({"problems": meta, "total": len(_PROBLEMS)})
 
 
-#if __name__ == "__main__":
-#    app.run(debug=True, port=5001)
+if __name__ == "__main__":
+    app.run(debug=True, port=5001)
