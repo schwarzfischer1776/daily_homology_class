@@ -32,5 +32,10 @@
       "Top dimension $k = n$: if $n$ is odd, $d_n = 0$ and there is no $d_{n+1}$, giving $H_n = \\mathbb{Z}$. If $n$ is even, $d_n = \\times 2$ and $H_n = \\ker(\\times 2) = 0$.",
       "$H_0 = \\mathbb{Z}$ (connected). Examples: $\\mathbb{R}P^2$: $(H_0, H_1, H_2) = (\\mathbb{Z}, \\mathbb{Z}/2, 0)$; $\\mathbb{R}P^4$: $(\\mathbb{Z}, \\mathbb{Z}/2, 0, \\mathbb{Z}/2, 0)$."
     ]
+  },
+  "functional_decimal": {
+    "latex": "\\sqrt{1 + 2\\,\\beta_{0}^2 + 3\\,\\beta_{1}^2 + 5\\,\\beta_{2}^2 + 7\\,\\beta_{3}^2 + 11\\,\\beta_{4}^2 + 13\\,\\beta_{5}^2 + 17\\,\\beta_{6}^2} + \\dfrac{2\\,\\beta_{0} + 3\\,\\beta_{1} + 4\\,\\beta_{2} + 5\\,\\beta_{3} + 6\\,\\beta_{4} + 7\\,\\beta_{5} + 8\\,\\beta_{6}}{3}",
+    "value": 2.398717,
+    "decimals": 3
   }
 }

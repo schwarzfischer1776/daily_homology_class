@@ -30,5 +30,10 @@
       "The ring structure is therefore that of an exterior algebra: $H^*(T^2) \\cong \\Lambda_\\mathbb{Z}[a, b]$, with $\\mathbb{Z}$-basis $\\{1, a, b, a \\cup b\\}$.",
       "More generally, $H^*(T^n;\\,\\mathbb{Z}) \\cong \\Lambda_\\mathbb{Z}[a_1, \\ldots, a_n]$, the exterior algebra on $n$ generators of degree 1."
     ]
+  },
+  "functional_decimal": {
+    "latex": "\\sqrt{1 + 2\\,\\beta_{0}^2 + 3\\,\\beta_{1}^2 + 5\\,\\beta_{2}^2} + \\dfrac{2\\,\\beta_{0} + 3\\,\\beta_{1} + 4\\,\\beta_{2}}{6}",
+    "value": 6.472136,
+    "decimals": 3
   }
 }

@@ -31,5 +31,10 @@
       "The homeomorphism criterion: $L(p,q) \\cong L(p,q')$ iff $q' \\equiv \\pm q^{\\pm 1} \\pmod p$. For $(p,q)=(7,1)$ and $q'=2$: $\\pm 1^{\\pm 1} \\equiv \\pm 1 \\equiv 1$ or $6 \\pmod 7$. Since $2 \\neq 1, 6$, the spaces are not homeomorphic.",
       "This is the classical example showing homology is insufficient to classify lens spaces; one needs Reidemeister torsion or the linking form."
     ]
+  },
+  "functional_decimal": {
+    "latex": "\\sqrt{1 + 2\\,\\beta_{0}^2 + 3\\,\\beta_{1}^2 + 5\\,\\beta_{2}^2 + 7\\,\\beta_{3}^2} + \\dfrac{2\\,\\beta_{0} + 3\\,\\beta_{1} + 4\\,\\beta_{2} + 5\\,\\beta_{3}}{4}",
+    "value": 4.912278,
+    "decimals": 3
   }
 }

@@ -32,5 +32,10 @@
       "$\\alpha^{n+1} = 0$ since $H^{n+1}(\\mathbb{R}P^n;\\,\\mathbb{Z}/2) = 0$.",
       "Conclusion: $H^*(\\mathbb{R}P^n;\\,\\mathbb{Z}/2) \\cong (\\mathbb{Z}/2)[\\alpha]/(\\alpha^{n+1})$. For $n = \\infty$: $H^*(\\mathbb{R}P^\\infty;\\,\\mathbb{Z}/2) \\cong (\\mathbb{Z}/2)[\\alpha]$."
     ]
+  },
+  "functional_decimal": {
+    "latex": "\\sqrt{1 + 2\\,\\beta_{0}^2 + 3\\,\\beta_{1}^2 + 5\\,\\beta_{2}^2 + 7\\,\\beta_{3}^2 + 11\\,\\beta_{4}^2} + \\dfrac{2\\,\\beta_{0} + 3\\,\\beta_{1} + 4\\,\\beta_{2} + 5\\,\\beta_{3} + 6\\,\\beta_{4}}{7}",
+    "value": 2.017765,
+    "decimals": 3
   }
 }

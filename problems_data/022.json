@@ -32,5 +32,10 @@
       "At $k = n$: $H_n(D^n, S^{n-1}) \\cong H_{n-1}(S^{n-1}) = \\mathbb{Z}$. All other groups vanish.",
       "Alternatively: by excision, $H_*(D^n, S^{n-1}) \\cong \\tilde{H}_*(D^n/S^{n-1}) = \\tilde{H}_*(S^n)$, giving $\\mathbb{Z}$ in degree $n$."
     ]
+  },
+  "functional_decimal": {
+    "latex": "\\sqrt{1 + 2\\,\\beta_{0}^2 + 3\\,\\beta_{1}^2 + 5\\,\\beta_{2}^2 + 7\\,\\beta_{3}^2 + 11\\,\\beta_{4}^2 + 13\\,\\beta_{5}^2} + \\dfrac{2\\,\\beta_{0} + 3\\,\\beta_{1} + 4\\,\\beta_{2} + 5\\,\\beta_{3} + 6\\,\\beta_{4} + 7\\,\\beta_{5}}{6}",
+    "value": 4.908324,
+    "decimals": 3
   }
 }

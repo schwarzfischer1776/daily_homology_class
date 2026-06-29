@@ -27,5 +27,10 @@
       "Adding: $\\tilde{H}_1(S^1 \\vee S^2) = \\mathbb{Z}$ (from $S^1$) and $\\tilde{H}_2(S^1 \\vee S^2) = \\mathbb{Z}$ (from $S^2$).",
       "Restoring $H_0 = \\tilde{H}_0 \\oplus \\mathbb{Z} = \\mathbb{Z}$. All higher groups vanish."
     ]
+  },
+  "functional_decimal": {
+    "latex": "\\sqrt{1 + 2\\,\\beta_{0}^2 + 3\\,\\beta_{1}^2 + 5\\,\\beta_{2}^2} + \\dfrac{2\\,\\beta_{0} + 3\\,\\beta_{1} + 4\\,\\beta_{2}}{4}",
+    "value": 5.566625,
+    "decimals": 3
   }
 }

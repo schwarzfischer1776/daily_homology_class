@@ -27,5 +27,10 @@
       "The underlying reason is orientability: $T^2$ is orientable (it has a well-defined global 2-cycle), while $K$ is non-orientable.",
       "Another invariant: $H_1(T^2) \\cong \\mathbb{Z}^2$ (torsion-free) whereas $H_1(K) \\cong \\mathbb{Z} \\oplus \\mathbb{Z}/2$ (has torsion)."
     ]
+  },
+  "functional_decimal": {
+    "latex": "\\sqrt{1 + 2\\,\\beta_{0}^2 + 3\\,\\beta_{1}^2 + 5\\,\\beta_{2}^2} + \\dfrac{2\\,\\beta_{0} + 3\\,\\beta_{1} + 4\\,\\beta_{2}}{7}",
+    "value": 6.186422,
+    "decimals": 3
   }
 }

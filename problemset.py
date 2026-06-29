@@ -23,6 +23,13 @@ SCHEDULE_FILE = os.path.join(HERE, "schedule.json")
 
 MAX_ATTEMPTS = 3
 
+# Which Betti-number functional to use for the answer the player must enter:
+#   "decimal" — square-root / fraction functional; answer is a decimal that
+#               must be entered correct to 3 decimal places (needs a calculator).
+#   "integer" — the original integer-valued functional.
+# Flip this (or set the HOMOLOGY_MODE env var) to switch the whole site over.
+FUNCTIONAL_MODE = os.environ.get("HOMOLOGY_MODE", "integer").lower()
+
 # How many problems should already be published the very first time the schedule
 # is created.  Day 0 ... PUBLISHED_AT_START-1 are unlocked immediately.
 PUBLISHED_AT_START = 7
@@ -36,7 +43,10 @@ _SHUFFLE_SEED = 1729
 # ─────────────────────────────────────────────────────────────────────────────
 def _build_statement(problem):
     space = problem["space"]
-    expr = problem["functional"]["latex"]
+    func = problem["functional"]
+    expr = func["latex"]
+    decimal = func.get("decimal", False)
+    decimals = func.get("decimals", 3)
     infinite = problem["euler"] is None
     intro = (
         rf"Let $X = {space}$, and write $\beta_n = \operatorname{{rank}} "
@@ -53,16 +63,46 @@ def _build_statement(problem):
             r"Compute the Euler characteristic $\chi(X)$, then evaluate the "
             rf"Betti-number functional $$\Upsilon(X) \;=\; {expr}.$$"
         )
-    outro = (
-        rf" Enter the integer{'' if infinite else 's'} below — "
-        rf"you have {MAX_ATTEMPTS} attempts."
-    )
+    if decimal:
+        what = (
+            rf"the Euler characteristic (an integer) and $\Upsilon$ rounded to "
+            rf"{decimals} decimal places"
+            if not infinite
+            else rf"$\Upsilon$ rounded to {decimals} decimal places"
+        )
+        outro = rf" Enter {what} below — you have {MAX_ATTEMPTS} attempts."
+    else:
+        outro = (
+            rf" Enter the integer{'' if infinite else 's'} below — "
+            rf"you have {MAX_ATTEMPTS} attempts."
+        )
     return intro + ask + outro
 
 
 # ─────────────────────────────────────────────────────────────────────────────
 # Loading
 # ─────────────────────────────────────────────────────────────────────────────
+def _select_functional(obj):
+    """Pick the active functional for the current FUNCTIONAL_MODE and tag it with
+    metadata the client uses to decide integer vs. decimal answer handling."""
+    use_decimal = FUNCTIONAL_MODE == "decimal" and obj.get("functional_decimal")
+    if use_decimal:
+        fd = obj["functional_decimal"]
+        return {
+            "latex": fd["latex"],
+            "value": fd["value"],
+            "decimal": True,
+            "decimals": fd.get("decimals", 3),
+        }
+    fi = obj["functional"]
+    return {
+        "latex": fi["latex"],
+        "value": fi["value"],
+        "decimal": False,
+        "decimals": 0,
+    }
+
+
 def _load_raw():
     """Read every ``*.json`` file in PROBLEMS_DIR, keyed by problem id."""
     problems = {}
@@ -81,6 +121,7 @@ def _load_raw():
             if key not in obj:
                 raise ValueError(f"{name}: missing required key '{key}'.")
         obj["infinite"] = obj["euler"] is None
+        obj["functional"] = _select_functional(obj)
         obj["statement"] = _build_statement(obj)
         obj["max_attempts"] = MAX_ATTEMPTS
         problems[pid] = obj
@@ -169,6 +210,7 @@ class ProblemSet:
         solution is only delivered separately, after the puzzle is solved."""
         p = copy.deepcopy(self._by_id[pid])
         p.pop("solution", None)
+        p.pop("functional_decimal", None)  # only the active functional is exposed
         return p
 
     def problem_for_date(self, d: date):

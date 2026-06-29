@@ -30,5 +30,10 @@
       "For $S^4$: $H^2(S^4) = 0$, so there is no non-trivial cup product at all.",
       "The intersection form (on $H_2$) is a fundamental invariant of 4-manifolds. $\\mathbb{C}P^2$ has intersection form $\\langle 1 \\rangle$; $S^4$ has the zero form (rank 0). Donaldson's theorem, Freedman's classification, and Seiberg–Witten theory are all built on such distinctions."
     ]
+  },
+  "functional_decimal": {
+    "latex": "\\sqrt{1 + 2\\,\\beta_{0}^2 + 3\\,\\beta_{1}^2 + 5\\,\\beta_{2}^2 + 7\\,\\beta_{3}^2 + 11\\,\\beta_{4}^2} + \\dfrac{2\\,\\beta_{0} + 3\\,\\beta_{1} + 4\\,\\beta_{2} + 5\\,\\beta_{3} + 6\\,\\beta_{4}}{4}",
+    "value": 7.358899,
+    "decimals": 3
   }
 }

@@ -32,5 +32,10 @@
       "$H_{\\text{odd}} = 0$ since $C_{\\text{odd}} = 0$.",
       "This is the cohomology of the Eilenberg–MacLane space $K(\\mathbb{Z},2)$; by contrast, $H^*(\\mathbb{C}P^\\infty;\\mathbb{Z}) \\cong \\mathbb{Z}[\\alpha]$ (a polynomial ring, not truncated), where $|\\alpha| = 2$."
     ]
+  },
+  "functional_decimal": {
+    "latex": "\\sqrt{2 + 2\\,\\beta_{0}^2 + 3\\,\\beta_{1}^2 + 5\\,\\beta_{2}^2 + 7\\,\\beta_{3}^2 + 11\\,\\beta_{4}^2 + 13\\,\\beta_{5}^2 + 17\\,\\beta_{6}^2} + \\dfrac{2\\,\\beta_{0} + 3\\,\\beta_{1} + 4\\,\\beta_{2} + 5\\,\\beta_{3} + 6\\,\\beta_{4} + 7\\,\\beta_{5} + 8\\,\\beta_{6}}{7}",
+    "value": 8.939905,
+    "decimals": 3
   }
 }

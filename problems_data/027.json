@@ -31,5 +31,10 @@
       "$\\mathbb{C}P^2$ is a closed orientable 4-manifold: consistent with $H_4 = \\mathbb{Z}$.",
       "Euler characteristic: $\\chi(\\mathbb{C}P^2) = 1 - 0 + 1 - 0 + 1 = 3$."
     ]
+  },
+  "functional_decimal": {
+    "latex": "\\sqrt{1 + 2\\,\\beta_{0}^2 + 3\\,\\beta_{1}^2 + 5\\,\\beta_{2}^2 + 7\\,\\beta_{3}^2 + 11\\,\\beta_{4}^2} + \\dfrac{2\\,\\beta_{0} + 3\\,\\beta_{1} + 4\\,\\beta_{2} + 5\\,\\beta_{3} + 6\\,\\beta_{4}}{7}",
+    "value": 6.073185,
+    "decimals": 3
   }
 }

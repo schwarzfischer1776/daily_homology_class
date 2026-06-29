@@ -33,5 +33,10 @@
       "The graded commutativity relation: $a \\cup b = (-1)^{n \\cdot n} b \\cup a = (-1)^{n^2} b \\cup a$.",
       "Summary: $H^* = \\mathbb{Z}\\langle 1, a, b, a\\cup b\\rangle$ with $a^2 = b^2 = 0$ and $a \\cup b = \\pm b \\cup a$ (exterior-algebra-like for $n$ odd, commutative for $n$ even)."
     ]
+  },
+  "functional_decimal": {
+    "latex": "\\sqrt{1 + 2\\,\\beta_{0}^2 + 3\\,\\beta_{1}^2 + 5\\,\\beta_{2}^2 + 7\\,\\beta_{3}^2 + 11\\,\\beta_{4}^2 + 13\\,\\beta_{5}^2 + 17\\,\\beta_{6}^2} + \\dfrac{2\\,\\beta_{0} + 3\\,\\beta_{1} + 4\\,\\beta_{2} + 5\\,\\beta_{3} + 6\\,\\beta_{4} + 7\\,\\beta_{5} + 8\\,\\beta_{6}}{3}",
+    "value": 13.59487,
+    "decimals": 3
   }
 }

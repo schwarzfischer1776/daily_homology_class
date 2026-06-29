@@ -103,6 +103,8 @@ function targetOf(problem) {
       expr_value: problem.functional.value,
       expr_latex: problem.functional.latex,
       infinite: problem.infinite,
+      decimal: !!problem.functional.decimal,
+      decimals: problem.functional.decimals || 3,
     };
   }
   return problem.target || {};
@@ -125,24 +127,33 @@ function checkAnswer(target) {
   if (answered || attemptsLeft <= 0) return;
 
   const needEuler = !target.infinite;
+  const isDecimal = !!target.decimal;
+  const dp        = target.decimals || 3;
 
-  // Parse the functional value (always required).
+  // Parse the functional value (always required) — float in decimal mode.
   const exprRaw = inputExpr.value.trim();
-  const exprVal = parseInt(exprRaw, 10);
+  const exprVal = isDecimal ? parseFloat(exprRaw) : parseInt(exprRaw, 10);
 
-  // Parse the Euler characteristic (only for finite-dimensional spaces).
+  // Parse the Euler characteristic (always an integer; finite-dim spaces only).
   const eulerRaw = inputEuler.value.trim();
   const eulerVal = parseInt(eulerRaw, 10);
 
   if (exprRaw === "" || isNaN(exprVal) || (needEuler && (eulerRaw === "" || isNaN(eulerVal)))) {
-    setFeedback("Please enter an integer in each field.", "wrong");
+    setFeedback(
+      isDecimal
+        ? `Enter χ as an integer and Υ as a number (to ${dp} decimals).`
+        : "Please enter an integer in each field.",
+      "wrong");
     if (needEuler && (eulerRaw === "" || isNaN(eulerVal))) shakeInput(inputEuler);
     if (exprRaw === "" || isNaN(exprVal)) shakeInput(inputExpr);
     return;
   }
 
   const eulerOk = !needEuler || eulerVal === target.euler;
-  const exprOk  = exprVal === target.expr_value;
+  // In decimal mode accept anything matching the true value to `dp` places.
+  const exprOk  = isDecimal
+    ? Math.abs(exprVal - target.expr_value) < 0.5 * Math.pow(10, -dp)
+    : exprVal === target.expr_value;
 
   if (eulerOk && exprOk) {
     answered = true;
@@ -259,6 +270,17 @@ function renderProblem(data) {
 
   // The Euler-characteristic field only applies to finite-dimensional spaces.
   fieldEuler.style.display = target.infinite ? "none" : "";
+
+  // Configure the Υ input for integer vs. decimal answers.
+  if (target.decimal) {
+    inputExpr.step = "any";
+    inputExpr.inputMode = "decimal";
+    inputExpr.placeholder = `Υ (×.${"".padEnd(target.decimals || 3, "0")})`;
+  } else {
+    inputExpr.step = "1";
+    inputExpr.inputMode = "numeric";
+    inputExpr.placeholder = "Υ";
+  }
   updateAttempts();
 
   // Meta
@@ -284,12 +306,15 @@ function renderProblem(data) {
     .join("");
 
   // Answer question — restate the functional next to the input boxes.
+  const round = target.decimal
+    ? `  (round  $\\Upsilon$  to ${target.decimals || 3} decimal places)`
+    : "";
   if (target.infinite) {
     answerQuestion.textContent =
-      `Enter the value of the Betti-number functional  $\\Upsilon(X) = ${target.expr_latex}$.`;
+      `Enter the value of the Betti-number functional  $\\Upsilon(X) = ${target.expr_latex}$${round}.`;
   } else {
     answerQuestion.textContent =
-      `Enter the Euler characteristic  $\\chi(X)$  and the value of  $\\Upsilon(X) = ${target.expr_latex}$.`;
+      `Enter the Euler characteristic  $\\chi(X)$  and the value of  $\\Upsilon(X) = ${target.expr_latex}$${round}.`;
   }
 
   // Typeset everything

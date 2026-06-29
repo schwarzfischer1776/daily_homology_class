@@ -33,5 +33,10 @@
       "Case $m = n$: degrees $m$ and $n$ coincide, giving $H_m = \\mathbb{Z}^2$ (from $(m,0)$ and $(0,n)$).",
       "Example: $H_*(S^1 \\times S^2) = (\\mathbb{Z}, \\mathbb{Z}, \\mathbb{Z}, \\mathbb{Z}, 0, \\ldots)$ in degrees $0,1,2,3$."
     ]
+  },
+  "functional_decimal": {
+    "latex": "\\sqrt{2 + 2\\,\\beta_{0}^2 + 3\\,\\beta_{1}^2 + 5\\,\\beta_{2}^2 + 7\\,\\beta_{3}^2 + 11\\,\\beta_{4}^2 + 13\\,\\beta_{5}^2 + 17\\,\\beta_{6}^2} + \\dfrac{2\\,\\beta_{0} + 3\\,\\beta_{1} + 4\\,\\beta_{2} + 5\\,\\beta_{3} + 6\\,\\beta_{4} + 7\\,\\beta_{5} + 8\\,\\beta_{6}}{6}",
+    "value": 9.416096,
+    "decimals": 3
   }
 }

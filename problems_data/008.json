@@ -28,5 +28,10 @@
       "$H_0 = \\mathbb{Z}$ (connected). No 2-cells, so $H_n = 0$ for $n \\geq 2$.",
       "More generally, for a finite connected graph with $V$ vertices and $E$ edges: $H_1 \\cong \\mathbb{Z}^{E-V+1}$."
     ]
+  },
+  "functional_decimal": {
+    "latex": "\\sqrt{1 + 2\\,\\beta_{0}^2 + 3\\,\\beta_{1}^2} + \\dfrac{2\\,\\beta_{0} + 3\\,\\beta_{1}}{3}",
+    "value": 6.53965,
+    "decimals": 3
   }
 }

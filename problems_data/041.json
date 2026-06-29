@@ -28,5 +28,10 @@
       "The generator of $\\pi_1 = H_1 = \\mathbb{Z}$ is the loop where one point winds around the other: the pure braid group $P_2 = \\pi_1(F(\\mathbb{R}^2,2)) = \\mathbb{Z}$.",
       "More generally: $F(\\mathbb{R}^2, n) \\simeq \\bigvee_{k=1}^{n-1} \\bigvee^k S^1$ (homotopy equivalent to a wedge of circles), and $H_1(F(\\mathbb{R}^2,n)) = \\mathbb{Z}^{n(n-1)/2}$."
     ]
+  },
+  "functional_decimal": {
+    "latex": "\\sqrt{1 + 2\\,\\beta_{0}^2 + 3\\,\\beta_{1}^2} + \\dfrac{2\\,\\beta_{0} + 3\\,\\beta_{1}}{4}",
+    "value": 3.69949,
+    "decimals": 3
   }
 }

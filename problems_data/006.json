@@ -29,5 +29,10 @@
       "$H_1 = \\ker(d_1)/\\operatorname{im}(d_2) = \\mathbb{Z}/2\\mathbb{Z} \\cong \\mathbb{Z}/2$.",
       "$H_0 = \\mathbb{Z}$. $\\mathbb{R}P^2$ is non-orientable, consistent with $H_2 = 0$."
     ]
+  },
+  "functional_decimal": {
+    "latex": "\\sqrt{1 + 2\\,\\beta_{0}^2 + 3\\,\\beta_{1}^2 + 5\\,\\beta_{2}^2} + \\dfrac{2\\,\\beta_{0} + 3\\,\\beta_{1} + 4\\,\\beta_{2}}{6}",
+    "value": 2.065384,
+    "decimals": 3
   }
 }

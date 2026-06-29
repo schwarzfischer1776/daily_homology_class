@@ -28,5 +28,10 @@
       "$H_2$: Tensor part: $H_0 \\otimes H_2 \\oplus H_1 \\otimes H_1 = \\mathbb{Z}\\otimes 0 \\oplus \\mathbb{Z}\\otimes\\mathbb{Z}/2 = 0 \\oplus \\mathbb{Z}/2$. Tor part: $\\operatorname{Tor}(H_0(S^1), H_1(\\mathbb{R}P^2)) = \\operatorname{Tor}(\\mathbb{Z}, \\mathbb{Z}/2) = 0$. So $H_2 = \\mathbb{Z}/2$.",
       "$H_3$: all tensor products vanish; Tor: $\\operatorname{Tor}(H_1(S^1), H_1(\\mathbb{R}P^2)) = \\operatorname{Tor}(\\mathbb{Z}, \\mathbb{Z}/2) = 0$. So $H_3 = 0$."
     ]
+  },
+  "functional_decimal": {
+    "latex": "\\sqrt{1 + 2\\,\\beta_{0}^2 + 3\\,\\beta_{1}^2 + 5\\,\\beta_{2}^2} + \\dfrac{2\\,\\beta_{0} + 3\\,\\beta_{1} + 4\\,\\beta_{2}}{3}",
+    "value": 4.116156,
+    "decimals": 3
   }
 }

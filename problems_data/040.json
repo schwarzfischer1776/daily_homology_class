@@ -33,5 +33,10 @@
       "Implication: $\\beta_k(M) = \\beta_{n-k}(M)$ (Betti numbers are symmetric). For $\\Sigma_g$: $(\\beta_0, \\beta_1, \\beta_2) = (1, 2g, 1)$, symmetric around $k = 1$. ✓",
       "For non-orientable manifolds (or manifolds with boundary), duality holds with twisted coefficients or relative cohomology."
     ]
+  },
+  "functional_decimal": {
+    "latex": "\\sqrt{2 + 2\\,\\beta_{0}^2 + 3\\,\\beta_{1}^2 + 5\\,\\beta_{2}^2 + 7\\,\\beta_{3}^2 + 11\\,\\beta_{4}^2 + 13\\,\\beta_{5}^2 + 17\\,\\beta_{6}^2} + \\dfrac{2\\,\\beta_{0} + 3\\,\\beta_{1} + 4\\,\\beta_{2} + 5\\,\\beta_{3} + 6\\,\\beta_{4} + 7\\,\\beta_{5} + 8\\,\\beta_{6}}{3}",
+    "value": 12.749429,
+    "decimals": 3
   }
 }

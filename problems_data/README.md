@@ -22,8 +22,14 @@ end of the release queue** — existing days are never reshuffled.
 
   "functional": {
     "latex": "11\\beta_0 + 13\\beta_1",  // the Betti functional Υ(X), LaTeX
-    "value": 24                          // its integer value — this is the
-                                         //   answer the player must enter
+    "value": 24                          // its integer value — the answer the
+                                         //   player enters in integer mode
+  },
+
+  "functional_decimal": {       // optional: harder, decimal-valued functional
+    "latex": "\\sqrt{1 + 2\\beta_0^2 + 3\\beta_1^2} + \\dfrac{2\\beta_0 + 3\\beta_1}{4}",
+    "value": 3.69949,           // full-precision value; checked to `decimals` dp
+    "decimals": 3               // how many decimal places the player must match
   },
 
   "solution": {                 // revealed only after the puzzle is solved
@@ -37,13 +43,27 @@ end of the release queue** — existing days are never reshuffled.
 ```
 
 Notes:
-- The player is asked for two integers: `euler` (χ) and `functional.value` (Υ).
-  For infinite-dimensional spaces set `"euler": null`; only Υ is then asked.
-- `functional.value` must be the correct integer value of `functional.latex`
-  evaluated at the given `betti` numbers — they are checked against the player's
-  input, so keep them consistent.
+- The player is asked for χ (`euler`, always an integer) and Υ. For
+  infinite-dimensional spaces set `"euler": null`; only Υ is then asked.
+- `functional.value` must be the correct value of `functional.latex` evaluated
+  at the given `betti` numbers — likewise `functional_decimal.value` for the
+  decimal one. They are checked against the player's input, so keep them
+  consistent.
 - All math is LaTeX (MathJax). Inside JSON, backslashes must be escaped: write
   `\\beta_0`, `\\mathbb{Z}`, etc.
+
+### Integer vs. decimal mode
+
+The site runs in one of two modes, set by `FUNCTIONAL_MODE` in
+`../problemset.py` (or the `HOMOLOGY_MODE` env var):
+
+- `"decimal"` (default) — uses `functional_decimal`; the player must enter Υ
+  correct to `decimals` decimal places (a calculator is needed, so the answer
+  can't be brute-forced). Falls back to the integer functional for any problem
+  lacking a `functional_decimal`.
+- `"integer"` — uses the plain integer `functional`.
+
+Switch with e.g. `HOMOLOGY_MODE=integer python3 server.py`, or edit the default.
 
 ## Release schedule
 

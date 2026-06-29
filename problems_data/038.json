@@ -31,5 +31,10 @@
       "By Poincaré duality: $H_k(K3) \\cong H^{4-k}(K3) \\cong H_{4-k}(K3)$. So $H_3 \\cong H_1 = 0$.",
       "The intersection form on $H_2(K3;\\mathbb{Z}) \\cong \\mathbb{Z}^{22}$ is $E_8 \\oplus E_8 \\oplus H \\oplus H \\oplus H$ (three hyperbolic planes and two $E_8$ lattices). This is a deep result."
     ]
+  },
+  "functional_decimal": {
+    "latex": "\\sqrt{1 + 2\\,\\beta_{0}^2 + 3\\,\\beta_{1}^2 + 5\\,\\beta_{2}^2 + 7\\,\\beta_{3}^2 + 11\\,\\beta_{4}^2} + \\dfrac{2\\,\\beta_{0} + 3\\,\\beta_{1} + 4\\,\\beta_{2} + 5\\,\\beta_{3} + 6\\,\\beta_{4}}{6}",
+    "value": 65.335586,
+    "decimals": 3
   }
 }

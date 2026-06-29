@@ -28,5 +28,10 @@
       "Homology: $H_0(K) = \\mathbb{Z}$, $H_1(K) = \\mathbb{Z} \\oplus \\mathbb{Z}/2$, $H_n(K) = 0$ for $n \\geq 2$.",
       "The free generator of $H_1$ corresponds to the base circle of the fibration, the $\\mathbb{Z}/2$ generator corresponds to a fibre circle traversed twice."
     ]
+  },
+  "functional_decimal": {
+    "latex": "\\sqrt{1 + 2\\,\\beta_{0}^2 + 3\\,\\beta_{1}^2 + 5\\,\\beta_{2}^2} + \\dfrac{2\\,\\beta_{0} + 3\\,\\beta_{1} + 4\\,\\beta_{2}}{3}",
+    "value": 4.116156,
+    "decimals": 3
   }
 }

@@ -31,5 +31,10 @@
       "Note: $H_*(L(p,q))$ depends only on $p$, not on $q$. To distinguish $L(p,q)$ from $L(p,q')$ one needs finer invariants (linking form, Reidemeister torsion).",
       "Example: $L(2,1) \\cong \\mathbb{R}P^3$. Indeed $H_*(L(2,1)) = (\\mathbb{Z}, \\mathbb{Z}/2, 0, \\mathbb{Z}) = H_*(\\mathbb{R}P^3)$. ✓"
     ]
+  },
+  "functional_decimal": {
+    "latex": "\\sqrt{1 + 2\\,\\beta_{0}^2 + 3\\,\\beta_{1}^2 + 5\\,\\beta_{2}^2 + 7\\,\\beta_{3}^2} + \\dfrac{2\\,\\beta_{0} + 3\\,\\beta_{1} + 4\\,\\beta_{2} + 5\\,\\beta_{3}}{3}",
+    "value": 5.495611,
+    "decimals": 3
   }
 }

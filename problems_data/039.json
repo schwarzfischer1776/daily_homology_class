@@ -29,5 +29,10 @@
       "Re-index the second sum: $\\sum_n (-1)^n \\operatorname{rank} B_{n-1} = \\sum_n (-1)^{n+1} \\operatorname{rank} B_n$.",
       "Hence $\\sum (-1)^n c_n = \\sum (-1)^n (\\operatorname{rank} Z_n - \\operatorname{rank} B_n) = \\sum (-1)^n \\beta_n$. QED."
     ]
+  },
+  "functional_decimal": {
+    "latex": "\\sqrt{1 + 2\\,\\beta_{0}^2 + 3\\,\\beta_{1}^2 + 5\\,\\beta_{2}^2} + \\dfrac{2\\,\\beta_{0} + 3\\,\\beta_{1} + 4\\,\\beta_{2}}{7}",
+    "value": 18.42785,
+    "decimals": 3
   }
 }

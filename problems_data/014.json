@@ -26,5 +26,10 @@
       "Homology: $H_0 = H_1 = \\mathbb{Z}$, $H_n = 0$ for $n \\geq 2$.",
       "Contrast with $\\mathbb{R}P^2$, where the identification creates torsion in $H_1$. The extra dimension in $\\mathbb{R}P^2$ is responsible."
     ]
+  },
+  "functional_decimal": {
+    "latex": "\\sqrt{1 + 2\\,\\beta_{0}^2 + 3\\,\\beta_{1}^2} + \\dfrac{2\\,\\beta_{0} + 3\\,\\beta_{1}}{6}",
+    "value": 3.282823,
+    "decimals": 3
   }
 }

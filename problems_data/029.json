@@ -35,5 +35,10 @@
       "No further relations: $\\{1, \\alpha, \\alpha^2, \\ldots, \\alpha^n\\}$ freely generate $H^*(\\mathbb{C}P^n)$ as a $\\mathbb{Z}$-module.",
       "Hence $H^*(\\mathbb{C}P^n;\\,\\mathbb{Z}) \\cong \\mathbb{Z}[\\alpha]/(\\alpha^{n+1})$, a truncated polynomial ring on a single degree-2 generator."
     ]
+  },
+  "functional_decimal": {
+    "latex": "\\sqrt{1 + 2\\,\\beta_{0}^2 + 3\\,\\beta_{1}^2 + 5\\,\\beta_{2}^2 + 7\\,\\beta_{3}^2 + 11\\,\\beta_{4}^2 + 13\\,\\beta_{5}^2 + 17\\,\\beta_{6}^2 + 19\\,\\beta_{7}^2 + 23\\,\\beta_{8}^2} + \\dfrac{2\\,\\beta_{0} + 3\\,\\beta_{1} + 4\\,\\beta_{2} + 5\\,\\beta_{3} + 6\\,\\beta_{4} + 7\\,\\beta_{5} + 8\\,\\beta_{6} + 9\\,\\beta_{7} + 10\\,\\beta_{8}}{4}",
+    "value": 15.181146,
+    "decimals": 3
   }
 }

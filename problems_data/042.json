@@ -32,5 +32,10 @@
       "Cup product: Let $a_1, a_2 \\in H^2(X)$ be the generators (pulled back from each $\\mathbb{C}P^2$ factor). Since $a_i$ is supported on $U$ (or $V$) and $a_j$ on $V$ (or $U$), and $U \\cap V = S^3$ has $H^2 = 0$, we get $a_1 \\cup a_2 = 0$.",
       "But $a_i \\cup a_i$: this equals the generator of $H^4$ coming from the $i$-th copy of $\\mathbb{C}P^2$. The intersection form is $\\begin{pmatrix}1 & 0 \\\\ 0 & 1\\end{pmatrix}$, i.e.\\ $\\langle 1 \\rangle \\oplus \\langle 1 \\rangle$. Contrast: $\\overline{\\mathbb{C}P^2} \\# \\mathbb{C}P^2$ has form $\\langle 1 \\rangle \\oplus \\langle -1 \\rangle$."
     ]
+  },
+  "functional_decimal": {
+    "latex": "\\sqrt{1 + 2\\,\\beta_{0}^2 + 3\\,\\beta_{1}^2 + 5\\,\\beta_{2}^2 + 7\\,\\beta_{3}^2 + 11\\,\\beta_{4}^2} + \\dfrac{2\\,\\beta_{0} + 3\\,\\beta_{1} + 4\\,\\beta_{2} + 5\\,\\beta_{3} + 6\\,\\beta_{4}}{6}",
+    "value": 8.497619,
+    "decimals": 3
   }
 }

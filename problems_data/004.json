@@ -24,5 +24,10 @@
       "In fact the augmented complex $\\cdots \\to C_1 \\to C_0 \\to \\mathbb{Z} \\to 0$ is acyclic, giving $H_0 = \\mathbb{Z}$ and $H_k = 0$ for $k \\geq 1$.",
       "For $D^n$: the radial deformation $H(x,t) = (1-t)x$ contracts $D^n$ to the origin, so $D^n$ is contractible and $H_k(D^n) = 0$ for $k \\geq 1$."
     ]
+  },
+  "functional_decimal": {
+    "latex": "\\sqrt{1 + 2\\,\\beta_{0}^2} + \\dfrac{2\\,\\beta_{0}}{3}",
+    "value": 2.398717,
+    "decimals": 3
   }
 }

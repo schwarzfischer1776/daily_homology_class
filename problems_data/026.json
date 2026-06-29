@@ -31,5 +31,10 @@
       "$H_1 = \\ker(0)/\\operatorname{im}(\\times 2) = \\mathbb{Z}/2$.",
       "$H_0 = \\mathbb{Z}$. Note: since $4$ is even, $\\mathbb{R}P^4$ is non-orientable ($H_4 = 0$), unlike $\\mathbb{R}P^3$."
     ]
+  },
+  "functional_decimal": {
+    "latex": "\\sqrt{1 + 2\\,\\beta_{0}^2 + 3\\,\\beta_{1}^2 + 5\\,\\beta_{2}^2 + 7\\,\\beta_{3}^2 + 11\\,\\beta_{4}^2} + \\dfrac{2\\,\\beta_{0} + 3\\,\\beta_{1} + 4\\,\\beta_{2} + 5\\,\\beta_{3} + 6\\,\\beta_{4}}{6}",
+    "value": 2.065384,
+    "decimals": 3
   }
 }

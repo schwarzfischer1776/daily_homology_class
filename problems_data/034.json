@@ -32,5 +32,10 @@
       "$H_0 = \\mathbb{Z}$ (one connected component, since every $\\mathbb{R}P^n$ is connected).",
       "Note the key difference from the finite case $\\mathbb{R}P^{2m}$: there is no top cell to give a $\\mathbb{Z}$ in top homology; the pattern $\\mathbb{Z}/2$ in all odd degrees continues indefinitely."
     ]
+  },
+  "functional_decimal": {
+    "latex": "\\sqrt{1 + 2\\,\\beta_{0}^2 + 3\\,\\beta_{1}^2 + 5\\,\\beta_{2}^2 + 7\\,\\beta_{3}^2 + 11\\,\\beta_{4}^2 + 13\\,\\beta_{5}^2 + 17\\,\\beta_{6}^2} + \\dfrac{2\\,\\beta_{0} + 3\\,\\beta_{1} + 4\\,\\beta_{2} + 5\\,\\beta_{3} + 6\\,\\beta_{4} + 7\\,\\beta_{5} + 8\\,\\beta_{6}}{6}",
+    "value": 2.065384,
+    "decimals": 3
   }
 }

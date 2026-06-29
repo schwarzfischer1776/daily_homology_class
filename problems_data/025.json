@@ -29,5 +29,10 @@
       "The $\\mathbb{Z}/2$ in $H_1$ captures the fact that $\\pi_1(SO(3)) = \\mathbb{Z}/2$: a $2\\pi$ rotation is contractible but a $4\\pi$ rotation is not.",
       "The double cover $SU(2) \\cong S^3 \\to SO(3)$ confirms this: $S^3$ is simply connected and covers $SO(3)$ with fibre $\\mathbb{Z}/2$."
     ]
+  },
+  "functional_decimal": {
+    "latex": "\\sqrt{1 + 2\\,\\beta_{0}^2 + 3\\,\\beta_{1}^2 + 5\\,\\beta_{2}^2 + 7\\,\\beta_{3}^2} + \\dfrac{2\\,\\beta_{0} + 3\\,\\beta_{1} + 4\\,\\beta_{2} + 5\\,\\beta_{3}}{4}",
+    "value": 4.912278,
+    "decimals": 3
   }
 }

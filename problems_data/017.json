@@ -33,5 +33,10 @@
       "$H_{\\text{odd}} = 0$ since $C_{\\text{odd}} = 0$. $H_k = 0$ for $k > 2n$.",
       "This is much simpler than $\\mathbb{R}P^n$: no boundary map ever contributes torsion."
     ]
+  },
+  "functional_decimal": {
+    "latex": "\\sqrt{2 + 2\\,\\beta_{0}^2 + 3\\,\\beta_{1}^2 + 5\\,\\beta_{2}^2 + 7\\,\\beta_{3}^2 + 11\\,\\beta_{4}^2 + 13\\,\\beta_{5}^2 + 17\\,\\beta_{6}^2} + \\dfrac{2\\,\\beta_{0} + 3\\,\\beta_{1} + 4\\,\\beta_{2} + 5\\,\\beta_{3} + 6\\,\\beta_{4} + 7\\,\\beta_{5} + 8\\,\\beta_{6}}{4}",
+    "value": 11.082763,
+    "decimals": 3
   }
 }

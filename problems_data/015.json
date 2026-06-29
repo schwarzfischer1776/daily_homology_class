@@ -30,5 +30,10 @@
       "$H_1 = \\ker(d_1)/\\operatorname{im}(d_2) = \\mathbb{Z}/2\\mathbb{Z} = \\mathbb{Z}/2$.",
       "$H_0 = \\mathbb{Z}$. Note $\\mathbb{R}P^3$ is a closed orientable 3-manifold (it is the group $SO(3)$), consistent with $H_3 = \\mathbb{Z}$."
     ]
+  },
+  "functional_decimal": {
+    "latex": "\\sqrt{1 + 2\\,\\beta_{0}^2 + 3\\,\\beta_{1}^2 + 5\\,\\beta_{2}^2 + 7\\,\\beta_{3}^2} + \\dfrac{2\\,\\beta_{0} + 3\\,\\beta_{1} + 4\\,\\beta_{2} + 5\\,\\beta_{3}}{7}",
+    "value": 4.162278,
+    "decimals": 3
   }
 }
