@@ -1,0 +1,37 @@
+{
+  "id": 17,
+  "title": "Homology of $\\mathbb{C}P^n$",
+  "type": "homology",
+  "difficulty": "medium",
+  "tags": [
+    "CW complex",
+    "projective spaces",
+    "complex"
+  ],
+  "space": "\\mathbb{C}P^3",
+  "euler": 4,
+  "betti": [
+    1,
+    0,
+    1,
+    0,
+    1,
+    0,
+    1
+  ],
+  "functional": {
+    "latex": "3\\,\\beta_0 + 4\\,\\beta_1 + \\sqrt{4\\,\\beta_2^2 + 12\\,\\beta_2\\beta_4 + 9\\,\\beta_4^2} + 6\\,\\beta_3 + 8\\,\\beta_5 + 10\\,\\beta_6",
+    "value": 18
+  },
+  "solution": {
+    "answer": "$H_k(\\mathbb{C}P^n;\\mathbb{Z}) \\cong \\mathbb{Z}$ for $k = 0, 2, 4, \\ldots, 2n$, and $H_k = 0$ for all odd $k$ and for $k > 2n$.",
+    "steps": [
+      "$\\mathbb{C}P^n$ is built by $\\mathbb{C}P^k = \\mathbb{C}P^{k-1} \\cup e^{2k}$, giving a CW structure with cells only in even dimensions $0, 2, 4, \\ldots, 2n$.",
+      "The cellular chain complex has $C_{2k} = \\mathbb{Z}$ for $0 \\leq k \\leq n$ and $C_{\\text{odd}} = 0$.",
+      "Every boundary map $d_k: C_k \\to C_{k-1}$ has $C_{k-1} = 0$ (since no odd cells) or $C_k = 0$, forcing $d_k = 0$.",
+      "Hence every chain is a cycle and every cycle is not a boundary: $H_{2k} = \\mathbb{Z}$ for $0 \\leq k \\leq n$.",
+      "$H_{\\text{odd}} = 0$ since $C_{\\text{odd}} = 0$. $H_k = 0$ for $k > 2n$.",
+      "This is much simpler than $\\mathbb{R}P^n$: no boundary map ever contributes torsion."
+    ]
+  }
+}

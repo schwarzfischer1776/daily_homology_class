@@ -1,0 +1,36 @@
+{
+  "id": 35,
+  "title": "Homology of $\\mathbb{C}P^\\infty$",
+  "type": "homology",
+  "difficulty": "hard",
+  "tags": [
+    "infinite CW complexes",
+    "classifying spaces",
+    "Eilenberg-MacLane"
+  ],
+  "space": "\\mathbb{C}P^\\infty",
+  "euler": null,
+  "betti": [
+    1,
+    0,
+    1,
+    0,
+    1,
+    0,
+    1
+  ],
+  "functional": {
+    "latex": "2\\,\\beta_0 + 3\\,\\beta_1 + 4\\,\\beta_2 + 5\\,\\beta_3 + 6\\,\\beta_4 + 7\\,\\beta_5 + 8\\,\\beta_6",
+    "value": 20
+  },
+  "solution": {
+    "answer": "$H_{2k}(\\mathbb{C}P^\\infty;\\,\\mathbb{Z}) \\cong \\mathbb{Z}$ for all $k \\geq 0$;\\quad $H_n(\\mathbb{C}P^\\infty) = 0$ for $n$ odd.",
+    "steps": [
+      "CW structure: one cell $e^{2k}$ in each even dimension $2k$, $k \\geq 0$. All odd cells absent.",
+      "Chain complex: $C_{2k} = \\mathbb{Z}$, $C_{\\text{odd}} = 0$. All boundary maps are zero (since $C_{2k-1} = 0$).",
+      "$H_{2k} = \\ker(d_{2k})/\\operatorname{im}(d_{2k+1}) = \\mathbb{Z}/0 = \\mathbb{Z}$ for all $k \\geq 0$.",
+      "$H_{\\text{odd}} = 0$ since $C_{\\text{odd}} = 0$.",
+      "This is the cohomology of the Eilenberg–MacLane space $K(\\mathbb{Z},2)$; by contrast, $H^*(\\mathbb{C}P^\\infty;\\mathbb{Z}) \\cong \\mathbb{Z}[\\alpha]$ (a polynomial ring, not truncated), where $|\\alpha| = 2$."
+    ]
+  }
+}

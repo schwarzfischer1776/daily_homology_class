@@ -1,0 +1,36 @@
+{
+  "id": 31,
+  "title": "Cohomology Ring of $\\mathbb{R}P^n$ with $\\mathbb{Z}/2$ Coefficients",
+  "type": "cohomology",
+  "difficulty": "hard",
+  "tags": [
+    "cup product",
+    "cohomology ring",
+    "projective spaces",
+    "mod-2 coefficients"
+  ],
+  "space": "\\mathbb{R}P^4",
+  "euler": 1,
+  "betti": [
+    1,
+    0,
+    0,
+    0,
+    0
+  ],
+  "functional": {
+    "latex": "23\\,\\beta_0 + 2\\,\\beta_1 + 3\\,\\beta_2 + 4\\,\\beta_3 + 5\\,\\beta_4",
+    "value": 23
+  },
+  "solution": {
+    "answer": "$H^*(\\mathbb{R}P^n;\\,\\mathbb{Z}/2) \\cong (\\mathbb{Z}/2)[\\alpha]\\,/\\,(\\alpha^{n+1}),\\quad |\\alpha| = 1.$",
+    "steps": [
+      "By the Universal Coefficient Theorem with $\\mathbb{Z}/2$ coefficients: $H^k(\\mathbb{R}P^n;\\,\\mathbb{Z}/2) \\cong \\mathbb{Z}/2$ for all $0 \\leq k \\leq n$.",
+      "Let $\\alpha \\in H^1(\\mathbb{R}P^n;\\,\\mathbb{Z}/2) \\cong \\mathbb{Z}/2$ be the unique non-zero element (Stiefel–Whitney class $w_1$ of the tautological bundle).",
+      "Over $\\mathbb{Z}/2$, graded commutativity $\\alpha^2 = (-1)^{1\\cdot 1}\\alpha^2 = -\\alpha^2 = \\alpha^2$ is trivially satisfied, so $\\alpha^2$ is not forced to be zero.",
+      "One computes (e.g.\\ via cellular cochains or the Leray–Hirsch theorem) that $\\alpha^k \\in H^k(\\mathbb{R}P^n;\\,\\mathbb{Z}/2)$ is the unique nonzero element for each $0 \\leq k \\leq n$.",
+      "$\\alpha^{n+1} = 0$ since $H^{n+1}(\\mathbb{R}P^n;\\,\\mathbb{Z}/2) = 0$.",
+      "Conclusion: $H^*(\\mathbb{R}P^n;\\,\\mathbb{Z}/2) \\cong (\\mathbb{Z}/2)[\\alpha]/(\\alpha^{n+1})$. For $n = \\infty$: $H^*(\\mathbb{R}P^\\infty;\\,\\mathbb{Z}/2) \\cong (\\mathbb{Z}/2)[\\alpha]$."
+    ]
+  }
+}

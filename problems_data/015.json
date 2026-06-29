@@ -1,0 +1,34 @@
+{
+  "id": 15,
+  "title": "Homology of $\\mathbb{R}P^3$",
+  "type": "homology",
+  "difficulty": "medium",
+  "tags": [
+    "CW complex",
+    "projective spaces",
+    "torsion"
+  ],
+  "space": "\\mathbb{R}P^3",
+  "euler": 0,
+  "betti": [
+    1,
+    0,
+    0,
+    1
+  ],
+  "functional": {
+    "latex": "5\\,\\beta_0 + 7\\,\\beta_1 + 9\\,\\beta_2 + 11\\,\\beta_3 + 4\\,\\beta_3^2",
+    "value": 20
+  },
+  "solution": {
+    "answer": "$H_0 \\cong \\mathbb{Z},\\quad H_1 \\cong \\mathbb{Z}/2,\\quad H_2 = 0,\\quad H_3 \\cong \\mathbb{Z},\\quad H_n = 0 \\text{ for } n \\geq 4.$",
+    "steps": [
+      "For $\\mathbb{R}P^n$, the CW structure has one cell $e^k$ in each dimension $0 \\leq k \\leq n$. The boundary map is $d_k = \\deg(\\text{attaching map}) = 1 + (-1)^k$.",
+      "For $n = 3$: chain complex $0 \\to C_3 \\xrightarrow{d_3=0} C_2 \\xrightarrow{d_2=2} C_1 \\xrightarrow{d_1=0} C_0 \\to 0$ with each $C_k = \\mathbb{Z}$.",
+      "$H_3 = \\ker(d_3)/\\operatorname{im}(d_4) = \\ker(0)/0 = \\mathbb{Z}$.",
+      "$H_2 = \\ker(d_2)/\\operatorname{im}(d_3) = \\ker(\\times 2)/\\operatorname{im}(0) = 0/0 = 0$.",
+      "$H_1 = \\ker(d_1)/\\operatorname{im}(d_2) = \\mathbb{Z}/2\\mathbb{Z} = \\mathbb{Z}/2$.",
+      "$H_0 = \\mathbb{Z}$. Note $\\mathbb{R}P^3$ is a closed orientable 3-manifold (it is the group $SO(3)$), consistent with $H_3 = \\mathbb{Z}$."
+    ]
+  }
+}

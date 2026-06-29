@@ -1,0 +1,32 @@
+{
+  "id": 20,
+  "title": "Künneth Formula: $H_*(S^1 \\times \\mathbb{R}P^2)$",
+  "type": "homology",
+  "difficulty": "medium",
+  "tags": [
+    "Künneth formula",
+    "torsion",
+    "projective spaces"
+  ],
+  "space": "S^1 \\times \\mathbb{R}P^2",
+  "euler": 0,
+  "betti": [
+    1,
+    1,
+    0
+  ],
+  "functional": {
+    "latex": "11\\,\\beta_0 + 13\\,\\beta_1 + 17\\,\\beta_2 + 2\\,\\beta_1^2",
+    "value": 26
+  },
+  "solution": {
+    "answer": "$H_0 \\cong \\mathbb{Z},\\quad H_1 \\cong \\mathbb{Z} \\oplus \\mathbb{Z}/2,\\quad H_2 \\cong \\mathbb{Z}/2,\\quad H_n = 0 \\text{ for } n \\geq 3.$",
+    "steps": [
+      "Künneth: $H_k(X \\times Y) \\cong \\bigoplus_{p+q=k} H_p(X) \\otimes H_q(Y) \\;\\oplus\\; \\bigoplus_{p+q=k-1} \\operatorname{Tor}(H_p(X), H_q(Y))$.",
+      "$H_0$: $H_0(S^1) \\otimes H_0(\\mathbb{R}P^2) = \\mathbb{Z} \\otimes \\mathbb{Z} = \\mathbb{Z}$. No Tor from degree $-1$. So $H_0 = \\mathbb{Z}$.",
+      "$H_1$: Tensor part: $H_0 \\otimes H_1 \\oplus H_1 \\otimes H_0 = \\mathbb{Z}\\otimes\\mathbb{Z}/2 \\oplus \\mathbb{Z}\\otimes\\mathbb{Z} = \\mathbb{Z}/2 \\oplus \\mathbb{Z}$. Tor part (from degree 0 pairs): $\\operatorname{Tor}(\\mathbb{Z}, \\mathbb{Z}) = 0$. So $H_1 = \\mathbb{Z} \\oplus \\mathbb{Z}/2$.",
+      "$H_2$: Tensor part: $H_0 \\otimes H_2 \\oplus H_1 \\otimes H_1 = \\mathbb{Z}\\otimes 0 \\oplus \\mathbb{Z}\\otimes\\mathbb{Z}/2 = 0 \\oplus \\mathbb{Z}/2$. Tor part: $\\operatorname{Tor}(H_0(S^1), H_1(\\mathbb{R}P^2)) = \\operatorname{Tor}(\\mathbb{Z}, \\mathbb{Z}/2) = 0$. So $H_2 = \\mathbb{Z}/2$.",
+      "$H_3$: all tensor products vanish; Tor: $\\operatorname{Tor}(H_1(S^1), H_1(\\mathbb{R}P^2)) = \\operatorname{Tor}(\\mathbb{Z}, \\mathbb{Z}/2) = 0$. So $H_3 = 0$."
+    ]
+  }
+}

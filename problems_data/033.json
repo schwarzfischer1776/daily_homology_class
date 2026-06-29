@@ -1,0 +1,35 @@
+{
+  "id": 33,
+  "title": "Are $L(7,1)$ and $L(7,2)$ Homeomorphic?",
+  "type": "homeomorphism",
+  "difficulty": "hard",
+  "tags": [
+    "lens spaces",
+    "Reidemeister torsion",
+    "linking form",
+    "3-manifolds"
+  ],
+  "space": "L(7,1)",
+  "euler": 0,
+  "betti": [
+    1,
+    0,
+    0,
+    1
+  ],
+  "functional": {
+    "latex": "8\\,\\beta_0 + 10\\,\\beta_1 + 12\\,\\beta_2 + 14\\,\\beta_3",
+    "value": 22
+  },
+  "solution": {
+    "answer": "$L(7,1)$ and $L(7,2)$ have the same homology but are not homeomorphic: $2 \\not\\equiv \\pm 1^{\\pm 1} \\pmod 7$.",
+    "steps": [
+      "Both spaces have $H_*(L(7,q)) = (\\mathbb{Z}, \\mathbb{Z}/7, 0, \\mathbb{Z})$ for $q = 1, 2$. Integral homology cannot distinguish them.",
+      "The linking form: for the generator $[\\gamma]$ of $H_1(L(p,q)) = \\mathbb{Z}/p$, the linking form satisfies $\\lambda([\\gamma],[\\gamma]) = q/p \\in \\mathbb{Q}/\\mathbb{Z}$.",
+      "For $L(7,1)$: $\\lambda([\\gamma],[\\gamma]) = 1/7$. For $L(7,2)$: $\\lambda([\\gamma],[\\gamma]) = 2/7$.",
+      "An isometry of linking forms preserving orientation requires $1/7 \\equiv \\pm(n^2 \\cdot 2/7) \\pmod{1}$ for some integer $n$, i.e.\\ $1 \\equiv \\pm 2n^2 \\pmod{7}$. Checking: $2n^2 \\pmod{7}$ takes values $\\{0,2,1,4\\}$ for $n=0,1,2,3$; neither $+1$ nor $-1 \\equiv 6$ appear as $2n^2$.",
+      "The homeomorphism criterion: $L(p,q) \\cong L(p,q')$ iff $q' \\equiv \\pm q^{\\pm 1} \\pmod p$. For $(p,q)=(7,1)$ and $q'=2$: $\\pm 1^{\\pm 1} \\equiv \\pm 1 \\equiv 1$ or $6 \\pmod 7$. Since $2 \\neq 1, 6$, the spaces are not homeomorphic.",
+      "This is the classical example showing homology is insufficient to classify lens spaces; one needs Reidemeister torsion or the linking form."
+    ]
+  }
+}

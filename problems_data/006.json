@@ -1,0 +1,33 @@
+{
+  "id": 6,
+  "title": "Homology of the Real Projective Plane",
+  "type": "homology",
+  "difficulty": "easy",
+  "tags": [
+    "CW complex",
+    "projective spaces",
+    "torsion"
+  ],
+  "space": "\\mathbb{R}P^2",
+  "euler": 1,
+  "betti": [
+    1,
+    0,
+    0
+  ],
+  "functional": {
+    "latex": "14\\,\\beta_0 + 9\\,\\beta_1 + 11\\,\\beta_2 + 2\\,\\beta_1\\beta_2",
+    "value": 14
+  },
+  "solution": {
+    "answer": "$H_0(\\mathbb{R}P^2) \\cong \\mathbb{Z},\\quad H_1(\\mathbb{R}P^2) \\cong \\mathbb{Z}/2,\\quad H_n(\\mathbb{R}P^2) = 0 \\text{ for } n \\geq 2.$",
+    "steps": [
+      "CW structure: one 0-cell $v$, one 1-cell $a$, one 2-cell $e$ attached by the degree-2 map $a^2$.",
+      "Chain complex: $0 \\to \\mathbb{Z} \\xrightarrow{d_2} \\mathbb{Z} \\xrightarrow{d_1} \\mathbb{Z} \\to 0$.",
+      "$d_1(a) = v - v = 0$; $d_2(e) = 2\\cdot a$ (the attaching map winds around the 1-skeleton twice).",
+      "$H_2 = \\ker(d_2) = \\ker(\\times 2: \\mathbb{Z} \\to \\mathbb{Z}) = 0$ (multiplication by 2 is injective).",
+      "$H_1 = \\ker(d_1)/\\operatorname{im}(d_2) = \\mathbb{Z}/2\\mathbb{Z} \\cong \\mathbb{Z}/2$.",
+      "$H_0 = \\mathbb{Z}$. $\\mathbb{R}P^2$ is non-orientable, consistent with $H_2 = 0$."
+    ]
+  }
+}

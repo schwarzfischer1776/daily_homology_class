@@ -21,6 +21,12 @@ const inputExpr      = document.getElementById("input-expr");
 const attemptsLeftEl = document.getElementById("attempts-left");
 const btnCheck       = document.getElementById("btn-check");
 const feedback       = document.getElementById("answer-feedback");
+const liveContent    = document.getElementById("live-content");
+const lockedCard     = document.getElementById("locked-card");
+const lockedText     = document.getElementById("locked-text");
+const solutionSec    = document.getElementById("solution-section");
+const solutionAnswer = document.getElementById("solution-answer");
+const solutionSteps  = document.getElementById("solution-steps");
 const btnPrev        = document.getElementById("btn-prev");
 const btnNext        = document.getElementById("btn-next");
 const btnToday       = document.getElementById("btn-today");
@@ -87,6 +93,21 @@ async function typeset(el) {
 /* ── Answer checking ───────────────────────────────────────────── */
 const MAX_ATTEMPTS = 3;
 
+// Normalise a problem payload into the {euler, expr_value, expr_latex, infinite}
+// shape the checker expects.
+function targetOf(problem) {
+  if (!problem) return {};
+  if (problem.functional) {
+    return {
+      euler: problem.euler,
+      expr_value: problem.functional.value,
+      expr_latex: problem.functional.latex,
+      infinite: problem.infinite,
+    };
+  }
+  return problem.target || {};
+}
+
 function updateAttempts() {
   if (answered) { attemptsLeftEl.textContent = ""; return; }
   const n = attemptsLeft;
@@ -129,7 +150,8 @@ function checkAnswer(target) {
     markField(inputExpr, true);
     lockInputs();
     updateAttempts();
-    setFeedback("✓ Correct! Solved.", "correct");
+    setFeedback("✓ Correct! Here is the homology class.", "correct");
+    revealSolution();
     return;
   }
 
@@ -155,6 +177,26 @@ function checkAnswer(target) {
   setFeedback(`✗ ${which}. ${attemptsLeft} attempt${attemptsLeft === 1 ? "" : "s"} left.`, "wrong");
 }
 
+/* ── Solution reveal ───────────────────────────────────────────── */
+async function revealSolution() {
+  const problem = currentProblem();
+  if (!problem) return;
+  try {
+    const res = await fetch(`/api/solution/${problem.id}`);
+    if (!res.ok) throw new Error(`HTTP ${res.status}`);
+    const { solution } = await res.json();
+    solutionAnswer.textContent = solution.answer || "";
+    solutionSteps.innerHTML = (solution.steps || [])
+      .map(s => `<li>${escHtml(s)}</li>`)
+      .join("");
+    solutionSec.classList.remove("hidden");
+    await typeset(solutionSec);
+    solutionSec.scrollIntoView({ behavior: "smooth", block: "nearest" });
+  } catch (err) {
+    console.error(err);
+  }
+}
+
 function markField(input, ok) {
   input.classList.remove("correct", "wrong");
   if (ok === true)  input.classList.add("correct");
@@ -173,9 +215,35 @@ function shakeInput(input) {
 }
 
 /* ── Render problem ────────────────────────────────────────────── */
+function renderLocked(data) {
+  liveContent.style.display = "none";
+  lockedCard.classList.remove("hidden");
+  if (data.before_start) {
+    lockedText.textContent =
+      `The Daily (Co)homology Class begins on ${formatDate(EPOCH_STR)}.`;
+  } else {
+    lockedText.textContent =
+      `Day ${data.day_number + 1} unlocks on ${formatDate(data.date)}. ` +
+      `Come back then for a fresh space to dissect.`;
+  }
+}
+
 function renderProblem(data) {
+  // Locked / preview day: hide the live problem and show the teaser.
+  if (data.locked || !data.problem) {
+    renderLocked(data);
+    return;
+  }
+  liveContent.style.display = "";
+  lockedCard.classList.add("hidden");
+
   const { problem, day_number } = data;
-  const target = problem.target || {};
+  const target = targetOf(problem);
+
+  // Hide any previously revealed solution.
+  solutionSec.classList.add("hidden");
+  solutionAnswer.textContent = "";
+  solutionSteps.innerHTML = "";
 
   // Reset state
   answered     = false;
@@ -251,7 +319,7 @@ async function loadDate(iso) {
 // Check answer on button click or Enter key
 btnCheck.addEventListener("click", () => {
   const problem = currentProblem();
-  if (problem) checkAnswer(problem.target);
+  if (problem) checkAnswer(targetOf(problem));
 });
 
 [inputEuler, inputExpr].forEach(el => {
@@ -283,32 +351,34 @@ archiveOverlay.addEventListener("click", e => {
   if (e.target === archiveOverlay) archiveOverlay.classList.add("hidden");
 });
 
-function renderArchive(problems) {
-  archiveList.innerHTML = problems.map(p => {
-    const cls = `archive-item-badge badge-${p.difficulty}`;
-    return `<div class="archive-item" data-id="${p.id}">
-      <span class="archive-item-num">#${p.id}</span>
-      <span class="archive-item-title">${escHtml(p.title)}</span>
-      <span class="${cls}">${p.difficulty}</span>
+function renderArchive(entries) {
+  archiveList.innerHTML = entries.map(e => {
+    const dayLabel = `Day ${e.day_number + 1}`;
+    if (e.released) {
+      const cls = `archive-item-badge badge-${e.difficulty}`;
+      return `<div class="archive-item" data-date="${e.date}">
+        <span class="archive-item-num">${dayLabel}</span>
+        <span class="archive-item-title">${escHtml(e.title)}</span>
+        <span class="${cls}">${e.difficulty}</span>
+      </div>`;
+    }
+    return `<div class="archive-item archive-item-locked">
+      <span class="archive-item-num">${dayLabel}</span>
+      <span class="archive-item-title archive-item-locked-title">🔒 Unlocks ${formatShort(e.date)}</span>
     </div>`;
   }).join("");
 
-  archiveList.querySelectorAll(".archive-item").forEach(el => {
+  archiveList.querySelectorAll(".archive-item[data-date]").forEach(el => {
     el.addEventListener("click", async () => {
       archiveOverlay.classList.add("hidden");
-      const id         = Number(el.dataset.id);
-      const targetIdx  = problems.findIndex(p => p.id === id);
-      if (targetIdx < 0) return;
-      const epoch           = isoToDate(EPOCH_STR);
-      const today           = isoToDate(TODAY_STR);
-      const daysSinceEpoch  = Math.round((today - epoch) / 86400000);
-      const cycleStart      = daysSinceEpoch - (daysSinceEpoch % TOTAL_PROBLEMS);
-      const targetDays      = cycleStart + targetIdx;
-      const targetDate      = new Date(epoch);
-      targetDate.setDate(targetDate.getDate() + targetDays);
-      await loadDate(dateToIso(targetDate));
+      await loadDate(el.dataset.date);
     });
   });
+}
+
+function formatShort(isoStr) {
+  return isoToDate(isoStr).toLocaleDateString("en-US",
+    { month: "short", day: "numeric", year: "numeric" });
 }
 
 btnPrev.onclick  = () => loadDate(addDays(currentDate, -1));

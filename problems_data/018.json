@@ -1,0 +1,37 @@
+{
+  "id": 18,
+  "title": "Künneth Formula: $H_*(S^m \\times S^n)$",
+  "type": "homology",
+  "difficulty": "medium",
+  "tags": [
+    "Künneth formula",
+    "product spaces",
+    "spheres"
+  ],
+  "space": "S^2 \\times S^4",
+  "euler": 4,
+  "betti": [
+    1,
+    0,
+    1,
+    0,
+    1,
+    0,
+    1
+  ],
+  "functional": {
+    "latex": "2\\,\\beta_0 + 3\\,\\beta_1 + 4\\,\\beta_2 + 5\\,\\beta_3 + 6\\,\\beta_4 + 7\\,\\beta_5 + 8\\,\\beta_6",
+    "value": 20
+  },
+  "solution": {
+    "answer": "For $m \\neq n$: $H_k = \\mathbb{Z}$ for $k \\in \\{0, m, n, m+n\\}$ and $0$ otherwise. For $m = n$: $H_0 = H_{2m} = \\mathbb{Z}$ and $H_m = \\mathbb{Z}^2$.",
+    "steps": [
+      "Since $H_*(S^m)$ is torsion-free, the $\\operatorname{Tor}$ terms all vanish and $H_k(S^m \\times S^n) = \\bigoplus_{p+q=k} H_p(S^m) \\otimes H_q(S^n)$.",
+      "Non-zero terms in $H_*(S^m)$: at degrees $0$ and $m$. Non-zero terms in $H_*(S^n)$: at degrees $0$ and $n$.",
+      "Products contributing to $H_k$: $(p,q) \\in \\{(0,0), (m,0), (0,n), (m,n)\\}$ give non-zero contributions at $k = 0, m, n, m+n$.",
+      "Case $m \\neq n$: these four degrees are distinct, each contributing $\\mathbb{Z} \\otimes \\mathbb{Z} = \\mathbb{Z}$. So $H_0 = H_m = H_n = H_{m+n} = \\mathbb{Z}$.",
+      "Case $m = n$: degrees $m$ and $n$ coincide, giving $H_m = \\mathbb{Z}^2$ (from $(m,0)$ and $(0,n)$).",
+      "Example: $H_*(S^1 \\times S^2) = (\\mathbb{Z}, \\mathbb{Z}, \\mathbb{Z}, \\mathbb{Z}, 0, \\ldots)$ in degrees $0,1,2,3$."
+    ]
+  }
+}

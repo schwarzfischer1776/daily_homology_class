@@ -1,0 +1,32 @@
+{
+  "id": 28,
+  "title": "Mapping Torus of the Antipodal Map on $S^1$",
+  "type": "homology",
+  "difficulty": "medium",
+  "tags": [
+    "mapping torus",
+    "fibrations",
+    "Klein bottle"
+  ],
+  "space": "K",
+  "euler": 0,
+  "betti": [
+    1,
+    1,
+    0
+  ],
+  "functional": {
+    "latex": "9\\,\\beta_0 + 11\\,\\beta_1 + 13\\,\\beta_2 + 2\\,\\beta_0\\beta_1",
+    "value": 22
+  },
+  "solution": {
+    "answer": "$T_f$ is homeomorphic to the Klein bottle $K$. So $H_0 \\cong \\mathbb{Z}$, $H_1 \\cong \\mathbb{Z} \\oplus \\mathbb{Z}/2$, $H_n = 0$ for $n \\geq 2$.",
+    "steps": [
+      "$T_f = S^1 \\times [0,1]/(e^{i\\theta},1) \\sim (e^{-i\\theta}, 0)$. The cylinder is glued at its two boundary circles, but with a reflection, producing a non-orientable surface.",
+      "In terms of the square $[0,1]^2$ model: identify top and bottom edges in the same direction (forming a cylinder) and then identify left and right edges in opposite directions. This is precisely the Klein bottle.",
+      "Formally: in the polygonal model, the attaching word becomes $aba^{-1}b^{-1}$... actually $abab^{-1}$ for the Klein bottle depending on convention. Either way, $T_f \\cong K$.",
+      "Homology: $H_0(K) = \\mathbb{Z}$, $H_1(K) = \\mathbb{Z} \\oplus \\mathbb{Z}/2$, $H_n(K) = 0$ for $n \\geq 2$.",
+      "The free generator of $H_1$ corresponds to the base circle of the fibration, the $\\mathbb{Z}/2$ generator corresponds to a fibre circle traversed twice."
+    ]
+  }
+}

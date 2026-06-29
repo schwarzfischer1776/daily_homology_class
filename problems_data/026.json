@@ -1,0 +1,35 @@
+{
+  "id": 26,
+  "title": "Homology of $\\mathbb{R}P^4$",
+  "type": "homology",
+  "difficulty": "medium",
+  "tags": [
+    "CW complex",
+    "projective spaces",
+    "torsion"
+  ],
+  "space": "\\mathbb{R}P^4",
+  "euler": 1,
+  "betti": [
+    1,
+    0,
+    0,
+    0,
+    0
+  ],
+  "functional": {
+    "latex": "21\\,\\beta_0 + 2\\,\\beta_1 + 3\\,\\beta_2 + 4\\,\\beta_3 + 5\\,\\beta_4",
+    "value": 21
+  },
+  "solution": {
+    "answer": "$H_0 \\cong \\mathbb{Z},\\quad H_1 \\cong \\mathbb{Z}/2,\\quad H_2 = 0,\\quad H_3 \\cong \\mathbb{Z}/2,\\quad H_4 = 0,\\quad H_n = 0 \\text{ for } n \\geq 5.$",
+    "steps": [
+      "Chain complex for $\\mathbb{R}P^4$: $0 \\to C_4 \\xrightarrow{\\times 2} C_3 \\xrightarrow{0} C_2 \\xrightarrow{\\times 2} C_1 \\xrightarrow{0} C_0 \\to 0$, each $C_k = \\mathbb{Z}$.",
+      "$H_4 = \\ker(\\times 2)/0 = 0$ (multiplication by 2 is injective).",
+      "$H_3 = \\ker(0)/\\operatorname{im}(\\times 2) = \\mathbb{Z}/2\\mathbb{Z}$.",
+      "$H_2 = \\ker(\\times 2)/\\operatorname{im}(0) = 0$.",
+      "$H_1 = \\ker(0)/\\operatorname{im}(\\times 2) = \\mathbb{Z}/2$.",
+      "$H_0 = \\mathbb{Z}$. Note: since $4$ is even, $\\mathbb{R}P^4$ is non-orientable ($H_4 = 0$), unlike $\\mathbb{R}P^3$."
+    ]
+  }
+}

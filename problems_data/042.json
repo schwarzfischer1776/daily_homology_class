@@ -1,0 +1,36 @@
+{
+  "id": 42,
+  "title": "Cohomology of $\\mathbb{C}P^2 \\# \\mathbb{C}P^2$ (Connected Sum)",
+  "type": "cohomology",
+  "difficulty": "hard",
+  "tags": [
+    "connected sum",
+    "4-manifolds",
+    "cup product",
+    "Mayer-Vietoris"
+  ],
+  "space": "\\mathbb{C}P^2 \\,\\#\\, \\mathbb{C}P^2",
+  "euler": 4,
+  "betti": [
+    1,
+    0,
+    2,
+    0,
+    1
+  ],
+  "functional": {
+    "latex": "3\\,\\beta_0 + 2\\,\\beta_1 + 5\\,\\beta_2 + 2\\,\\beta_3 + 7\\,\\beta_4 + \\beta_2^2",
+    "value": 24
+  },
+  "solution": {
+    "answer": "$H_0 \\cong H_4 \\cong \\mathbb{Z}$;\\quad $H_2 \\cong \\mathbb{Z}^2$;\\quad $H_1 = H_3 = 0$. Cup product: $a_1^2 = a_2^2 = [\\text{pt}]$, $a_1 \\cup a_2 = 0$, where $a_1, a_2$ are generators of each $H^2(\\mathbb{C}P^2)$.",
+    "steps": [
+      "Write $X = \\mathbb{C}P^2 \\# \\mathbb{C}P^2 = U \\cup V$ where $U = \\mathbb{C}P^2 \\setminus \\{D^4\\}$, $V = \\mathbb{C}P^2 \\setminus \\{D^4\\}$, and $U \\cap V \\simeq S^3$.",
+      "$H_k(\\mathbb{C}P^2 \\setminus D^4)$: removing an open disk kills $H_4$ and $H_3$ but preserves $H_0 = \\mathbb{Z}$, $H_2 = \\mathbb{Z}$. (Use the long exact sequence of the pair $(\\mathbb{C}P^2, D^4)$.)",
+      "Mayer–Vietoris for $X = U \\cup V$, $U \\cap V \\simeq S^3$: in degrees 2 and below, the sequence gives $H_2(X) = H_2(U) \\oplus H_2(V) = \\mathbb{Z}^2$.",
+      "Since $H_1(U) = H_1(V) = H_1(S^3) = 0$, we get $H_1(X) = 0$. Similarly $H_3(X) = 0$. $H_4(X) = \\mathbb{Z}$ (orientable closed 4-manifold).",
+      "Cup product: Let $a_1, a_2 \\in H^2(X)$ be the generators (pulled back from each $\\mathbb{C}P^2$ factor). Since $a_i$ is supported on $U$ (or $V$) and $a_j$ on $V$ (or $U$), and $U \\cap V = S^3$ has $H^2 = 0$, we get $a_1 \\cup a_2 = 0$.",
+      "But $a_i \\cup a_i$: this equals the generator of $H^4$ coming from the $i$-th copy of $\\mathbb{C}P^2$. The intersection form is $\\begin{pmatrix}1 & 0 \\\\ 0 & 1\\end{pmatrix}$, i.e.\\ $\\langle 1 \\rangle \\oplus \\langle 1 \\rangle$. Contrast: $\\overline{\\mathbb{C}P^2} \\# \\mathbb{C}P^2$ has form $\\langle 1 \\rangle \\oplus \\langle -1 \\rangle$."
+    ]
+  }
+}

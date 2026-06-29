@@ -1,0 +1,31 @@
+{
+  "id": 11,
+  "title": "Are the Torus and Klein Bottle Homeomorphic?",
+  "type": "homeomorphism",
+  "difficulty": "easy",
+  "tags": [
+    "homeomorphism invariants",
+    "surfaces",
+    "orientability"
+  ],
+  "space": "T^2",
+  "euler": 0,
+  "betti": [
+    1,
+    2,
+    1
+  ],
+  "functional": {
+    "latex": "4\\,\\beta_0 + 7\\,\\beta_1 + 9\\,\\beta_2 + 2\\,\\beta_1^2",
+    "value": 35
+  },
+  "solution": {
+    "answer": "No, $T^2$ and $K$ are not homeomorphic.",
+    "steps": [
+      "$H_2(T^2) \\cong \\mathbb{Z}$ and $H_2(K) = 0$: these groups differ.",
+      "Since a homeomorphism would induce an isomorphism on $H_2$, no homeomorphism can exist.",
+      "The underlying reason is orientability: $T^2$ is orientable (it has a well-defined global 2-cycle), while $K$ is non-orientable.",
+      "Another invariant: $H_1(T^2) \\cong \\mathbb{Z}^2$ (torsion-free) whereas $H_1(K) \\cong \\mathbb{Z} \\oplus \\mathbb{Z}/2$ (has torsion)."
+    ]
+  }
+}

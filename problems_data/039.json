@@ -1,0 +1,33 @@
+{
+  "id": 39,
+  "title": "Euler Characteristic and Homology",
+  "type": "homology",
+  "difficulty": "hard",
+  "tags": [
+    "Euler characteristic",
+    "Betti numbers",
+    "CW complexes"
+  ],
+  "space": "\\Sigma_4",
+  "euler": -6,
+  "betti": [
+    1,
+    8,
+    1
+  ],
+  "functional": {
+    "latex": "2\\,\\beta_0 + 3\\,\\beta_1 + 5\\,\\beta_2 + \\beta_1^2",
+    "value": 95
+  },
+  "solution": {
+    "answer": "$\\chi(X) = \\sum_{n} (-1)^n c_n = \\sum_{n} (-1)^n \\beta_n,$ where $\\beta_n = \\operatorname{rank} H_n(X;\\mathbb{Z})$.",
+    "steps": [
+      "Define $Z_n = \\ker d_n \\subseteq C_n$ and $B_n = \\operatorname{im} d_{n+1} \\subseteq C_n$. We have $H_n = Z_n/B_n$, so $\\beta_n = \\operatorname{rank} Z_n - \\operatorname{rank} B_n$.",
+      "Also, $\\operatorname{rank} C_n = c_n = \\operatorname{rank} Z_n + \\operatorname{rank}(\\operatorname{im} d_n) = \\operatorname{rank} Z_n + \\operatorname{rank} B_{n-1}$.",
+      "So $(-1)^n c_n = (-1)^n \\operatorname{rank} Z_n + (-1)^n \\operatorname{rank} B_{n-1}$.",
+      "Summing over all $n$: $\\sum_n (-1)^n c_n = \\sum_n (-1)^n \\operatorname{rank} Z_n + \\sum_n (-1)^n \\operatorname{rank} B_{n-1}$.",
+      "Re-index the second sum: $\\sum_n (-1)^n \\operatorname{rank} B_{n-1} = \\sum_n (-1)^{n+1} \\operatorname{rank} B_n$.",
+      "Hence $\\sum (-1)^n c_n = \\sum (-1)^n (\\operatorname{rank} Z_n - \\operatorname{rank} B_n) = \\sum (-1)^n \\beta_n$. QED."
+    ]
+  }
+}

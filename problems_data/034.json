@@ -1,0 +1,36 @@
+{
+  "id": 34,
+  "title": "Homology of $\\mathbb{R}P^\\infty$",
+  "type": "homology",
+  "difficulty": "hard",
+  "tags": [
+    "infinite CW complexes",
+    "classifying spaces",
+    "Eilenberg-MacLane"
+  ],
+  "space": "\\mathbb{R}P^\\infty",
+  "euler": null,
+  "betti": [
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "functional": {
+    "latex": "15\\,\\beta_0 + 2\\,\\beta_1 + 3\\,\\beta_2 + 4\\,\\beta_3 + 5\\,\\beta_4 + 6\\,\\beta_5 + 7\\,\\beta_6",
+    "value": 15
+  },
+  "solution": {
+    "answer": "$H_0(\\mathbb{R}P^\\infty) \\cong \\mathbb{Z}$;\\quad $H_k(\\mathbb{R}P^\\infty) \\cong \\mathbb{Z}/2$ for $k$ odd, $k \\geq 1$;\\quad $H_k(\\mathbb{R}P^\\infty) = 0$ for $k$ even, $k \\geq 2$.",
+    "steps": [
+      "The CW structure on $\\mathbb{R}P^\\infty$ has one cell in every dimension $\\geq 0$. Chain complex (each $C_k = \\mathbb{Z}$): $\\cdots \\xrightarrow{0} \\mathbb{Z} \\xrightarrow{\\times 2} \\mathbb{Z} \\xrightarrow{0} \\mathbb{Z} \\xrightarrow{\\times 2} \\mathbb{Z} \\xrightarrow{0} \\mathbb{Z} \\to 0$.",
+      "For even $k \\geq 2$: $d_k = \\times 2$ and $d_{k+1} = 0$. $H_k = \\ker(\\times 2)/\\operatorname{im}(0) = 0$.",
+      "For odd $k \\geq 1$: $d_k = 0$ and $d_{k+1} = \\times 2$. $H_k = \\ker(0)/\\operatorname{im}(\\times 2) = \\mathbb{Z}/2$.",
+      "$H_0 = \\mathbb{Z}$ (one connected component, since every $\\mathbb{R}P^n$ is connected).",
+      "Note the key difference from the finite case $\\mathbb{R}P^{2m}$: there is no top cell to give a $\\mathbb{Z}$ in top homology; the pattern $\\mathbb{Z}/2$ in all odd degrees continues indefinitely."
+    ]
+  }
+}

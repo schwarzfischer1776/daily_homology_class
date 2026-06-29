@@ -1,0 +1,34 @@
+{
+  "id": 3,
+  "title": "Homology of the $n$-Sphere",
+  "type": "homology",
+  "difficulty": "easy",
+  "tags": [
+    "CW complex",
+    "spheres"
+  ],
+  "space": "S^4",
+  "euler": 2,
+  "betti": [
+    1,
+    0,
+    0,
+    0,
+    1
+  ],
+  "functional": {
+    "latex": "5\\,\\beta_0 + 6\\,\\beta_1 + 7\\,\\beta_2 + 8\\,\\beta_3 + 9\\,\\beta_4 + 4\\,\\beta_4^2",
+    "value": 18
+  },
+  "solution": {
+    "answer": "$H_k(S^n) \\cong \\mathbb{Z}$ for $k = 0$ and $k = n$; $H_k(S^n) = 0$ otherwise.",
+    "steps": [
+      "CW structure: one 0-cell $v$ and one $n$-cell $e^n$ attached by the constant map. No cells in dimensions $1, \\ldots, n-1$.",
+      "Cellular chain complex: all $C_k = 0$ except $C_0 = \\mathbb{Z}$ and $C_n = \\mathbb{Z}$.",
+      "Boundary map $d_n: C_n \\to C_{n-1}$. When $n \\geq 2$, $C_{n-1} = 0$, so $d_n = 0$.",
+      "$H_n = \\ker(d_n)/\\operatorname{im}(d_{n+1}) = \\mathbb{Z}/0 = \\mathbb{Z}$.",
+      "$H_0 = \\mathbb{Z}$ (connected). All other $H_k = 0$.",
+      "For $n = 1$: the unique 1-cell is a loop so $d_1 = 0$, recovering $H_0 = H_1 = \\mathbb{Z}$."
+    ]
+  }
+}

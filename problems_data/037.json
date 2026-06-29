@@ -1,0 +1,34 @@
+{
+  "id": 37,
+  "title": "Are $\\mathbb{C}P^2$ and $S^4$ Homeomorphic?",
+  "type": "homeomorphism",
+  "difficulty": "hard",
+  "tags": [
+    "homeomorphism invariants",
+    "4-manifolds",
+    "cup product"
+  ],
+  "space": "\\mathbb{C}P^2",
+  "euler": 3,
+  "betti": [
+    1,
+    0,
+    1,
+    0,
+    1
+  ],
+  "functional": {
+    "latex": "6\\,\\beta_0 + 7\\,\\beta_1 + 8\\,\\beta_2 + 9\\,\\beta_3 + 10\\,\\beta_4",
+    "value": 24
+  },
+  "solution": {
+    "answer": "No, $\\mathbb{C}P^2 \\not\\cong S^4$. They differ already in $H_2$.",
+    "steps": [
+      "$H_2(\\mathbb{C}P^2) \\cong \\mathbb{Z}$ while $H_2(S^4) = 0$. A homeomorphism would require these to be isomorphic.",
+      "Since $\\mathbb{Z} \\neq 0$, no homeomorphism exists. The proof is complete.",
+      "For additional insight: the cup product $\\alpha \\cup \\alpha \\in H^4(\\mathbb{C}P^2) \\cong \\mathbb{Z}$ is a generator (since $H^*(\\mathbb{C}P^2) = \\mathbb{Z}[\\alpha]/(\\alpha^3)$). So the cup product pairing on $H^2(\\mathbb{C}P^2)$ is non-degenerate.",
+      "For $S^4$: $H^2(S^4) = 0$, so there is no non-trivial cup product at all.",
+      "The intersection form (on $H_2$) is a fundamental invariant of 4-manifolds. $\\mathbb{C}P^2$ has intersection form $\\langle 1 \\rangle$; $S^4$ has the zero form (rank 0). Donaldson's theorem, Freedman's classification, and Seiberg–Witten theory are all built on such distinctions."
+    ]
+  }
+}

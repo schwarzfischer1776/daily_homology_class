@@ -1,0 +1,34 @@
+{
+  "id": 30,
+  "title": "Cohomology Ring of $T^2$",
+  "type": "cohomology",
+  "difficulty": "hard",
+  "tags": [
+    "cup product",
+    "cohomology ring",
+    "torus",
+    "exterior algebra"
+  ],
+  "space": "T^2",
+  "euler": 0,
+  "betti": [
+    1,
+    2,
+    1
+  ],
+  "functional": {
+    "latex": "5\\,\\beta_0 + 6\\,\\beta_1 + 7\\,\\beta_2 + 2\\,\\beta_1\\beta_2",
+    "value": 28
+  },
+  "solution": {
+    "answer": "$H^*(T^2;\\,\\mathbb{Z}) \\cong \\Lambda_{\\mathbb{Z}}[a,b] = \\mathbb{Z}\\langle 1, a, b, a \\cup b\\rangle,\\quad |a| = |b| = 1,\\quad a^2 = b^2 = 0,\\quad a \\cup b = -b \\cup a.$",
+    "steps": [
+      "Additively: $H^0 = \\mathbb{Z}$, $H^1 = \\mathbb{Z}^2$ (with generators $a, b$ dual to $[S^1 \\times \\{*\\}]$ and $[\\{*\\} \\times S^1]$), $H^2 = \\mathbb{Z}$.",
+      "Graded commutativity of cup product: $\\alpha \\cup \\beta = (-1)^{pq}\\, \\beta \\cup \\alpha$ for $\\alpha \\in H^p$, $\\beta \\in H^q$. For $p = q = 1$: $a \\cup b = -b \\cup a$.",
+      "$a \\cup a \\in H^2$: since $a \\cup a = (-1)^{1\\cdot 1}a \\cup a = -a \\cup a$, we get $2(a \\cup a) = 0$. Over $\\mathbb{Z}$ (which is torsion-free), $a \\cup a = 0$. Similarly $b \\cup b = 0$.",
+      "$a \\cup b$: This is the fundamental class $[T^2]^* \\in H^2(T^2)$ (up to sign), a generator of $H^2 = \\mathbb{Z}$. It is non-zero.",
+      "The ring structure is therefore that of an exterior algebra: $H^*(T^2) \\cong \\Lambda_\\mathbb{Z}[a, b]$, with $\\mathbb{Z}$-basis $\\{1, a, b, a \\cup b\\}$.",
+      "More generally, $H^*(T^n;\\,\\mathbb{Z}) \\cong \\Lambda_\\mathbb{Z}[a_1, \\ldots, a_n]$, the exterior algebra on $n$ generators of degree 1."
+    ]
+  }
+}

@@ -1,0 +1,37 @@
+{
+  "id": 40,
+  "title": "Poincaré Duality for Closed Orientable Manifolds",
+  "type": "cohomology",
+  "difficulty": "hard",
+  "tags": [
+    "Poincaré duality",
+    "manifolds",
+    "orientation"
+  ],
+  "space": "\\mathbb{C}P^3",
+  "euler": 4,
+  "betti": [
+    1,
+    0,
+    1,
+    0,
+    1,
+    0,
+    1
+  ],
+  "functional": {
+    "latex": "2\\,\\beta_0 + 2\\,\\beta_1 + 4\\,\\beta_2 + 2\\,\\beta_3 + 6\\,\\beta_4 + 2\\,\\beta_5 + 8\\,\\beta_6",
+    "value": 20
+  },
+  "solution": {
+    "answer": "Poincaré duality: $H^k(M;\\mathbb{Z}) \\cong H_{n-k}(M;\\mathbb{Z})$ for closed orientable $n$-manifolds $M$.",
+    "steps": [
+      "Theorem (Poincaré duality): If $M$ is a compact orientable $n$-manifold without boundary with fundamental class $[M]$, then $-\\cap [M]: H^k(M;\\mathbb{Z}) \\to H_{n-k}(M;\\mathbb{Z})$ is an isomorphism for all $k$.",
+      "Verification for $\\Sigma_g$ ($n=2$): $H^0 \\cong H_2 = \\mathbb{Z}$, $H^1 \\cong H_1 = \\mathbb{Z}^{2g}$, $H^2 \\cong H_0 = \\mathbb{Z}$. All match. ✓",
+      "(Using UCT: $H^k(\\Sigma_g;\\mathbb{Z}) \\cong H_k(\\Sigma_g;\\mathbb{Z})$ since all $H_k(\\Sigma_g)$ are free.)",
+      "Verification for $\\mathbb{C}P^2$ ($n=4$): $H^0 \\cong H_4 = \\mathbb{Z}$, $H^2 \\cong H_2 = \\mathbb{Z}$, $H^4 \\cong H_0 = \\mathbb{Z}$. ✓",
+      "Implication: $\\beta_k(M) = \\beta_{n-k}(M)$ (Betti numbers are symmetric). For $\\Sigma_g$: $(\\beta_0, \\beta_1, \\beta_2) = (1, 2g, 1)$, symmetric around $k = 1$. ✓",
+      "For non-orientable manifolds (or manifolds with boundary), duality holds with twisted coefficients or relative cohomology."
+    ]
+  }
+}

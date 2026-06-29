@@ -1,0 +1,28 @@
+{
+  "id": 4,
+  "title": "Homology of Contractible Spaces",
+  "type": "homology",
+  "difficulty": "easy",
+  "tags": [
+    "homotopy invariance",
+    "disk"
+  ],
+  "space": "D^n",
+  "euler": 1,
+  "betti": [
+    1
+  ],
+  "functional": {
+    "latex": "17\\,\\beta_0 + 6\\,\\beta_0^2",
+    "value": 23
+  },
+  "solution": {
+    "answer": "$H_0(X) \\cong \\mathbb{Z}$, $H_k(X) = 0$ for $k \\geq 1$.",
+    "steps": [
+      "By homotopy invariance, $H_*(X) \\cong H_*(\\{*\\})$ for any contractible $X$.",
+      "For a point $\\{*\\}$, the singular chain complex has $C_0 = \\mathbb{Z}$ (the unique 0-simplex) and $C_k = \\mathbb{Z}$ for all $k$, but all boundary maps alternate between $0$ and $\\text{id}$.",
+      "In fact the augmented complex $\\cdots \\to C_1 \\to C_0 \\to \\mathbb{Z} \\to 0$ is acyclic, giving $H_0 = \\mathbb{Z}$ and $H_k = 0$ for $k \\geq 1$.",
+      "For $D^n$: the radial deformation $H(x,t) = (1-t)x$ contracts $D^n$ to the origin, so $D^n$ is contractible and $H_k(D^n) = 0$ for $k \\geq 1$."
+    ]
+  }
+}

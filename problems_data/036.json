@@ -1,0 +1,37 @@
+{
+  "id": 36,
+  "title": "Cohomology Ring of $S^n \\times S^n$",
+  "type": "cohomology",
+  "difficulty": "hard",
+  "tags": [
+    "cup product",
+    "cohomology ring",
+    "product spaces"
+  ],
+  "space": "S^3 \\times S^3",
+  "euler": 0,
+  "betti": [
+    1,
+    0,
+    0,
+    2,
+    0,
+    0,
+    1
+  ],
+  "functional": {
+    "latex": "3\\,\\beta_0 + 2\\,\\beta_1 + 2\\,\\beta_2 + 5\\,\\beta_3 + 2\\,\\beta_4 + 2\\,\\beta_5 + 7\\,\\beta_6 + \\beta_3^2",
+    "value": 24
+  },
+  "solution": {
+    "answer": "$H^*(S^n \\times S^n;\\,\\mathbb{Z}) \\cong \\mathbb{Z}[a,b]\\,/\\,(a^2,\\, b^2,\\, ab - (-1)^n ba)$ with $|a| = |b| = n$. In particular $a \\cup b$ generates $H^{2n} \\cong \\mathbb{Z}$.",
+    "steps": [
+      "By Künneth: $H^0 = \\mathbb{Z}$, $H^n = \\mathbb{Z}^2$ (with generators $a = p_1^*([\\text{fund.\\ class}])$ and $b = p_2^*([\\text{fund.\\ class}])$), $H^{2n} = \\mathbb{Z}$.",
+      "For $a \\cup a \\in H^{2n}$: by graded commutativity, $a \\cup a = (-1)^{n \\cdot n} a \\cup a = (-1)^{n^2} a \\cup a$. If $n$ is odd, $(-1)^{n^2} = -1$, so $2(a \\cup a) = 0$, giving $a \\cup a = 0$ over $\\mathbb{Z}$. If $n$ is even, no constraint from commutativity alone.",
+      "For $n$ even: $a \\cup a$ lives in $H^{2n}(S^n \\times S^n) \\cong \\mathbb{Z}$, but $a$ pulls back from a factor $S^n$ with $H^{2n}(S^n) = 0$, so $a \\cup a = 0$ regardless.",
+      "For $a \\cup b$: $a$ and $b$ come from different factors. By the Künneth formula for cohomology, $a \\cup b = p_1^*([S^n]) \\cup p_2^*([S^n])$ is the fundamental class of $S^n \\times S^n$, a generator of $H^{2n} = \\mathbb{Z}$. Hence $a \\cup b \\neq 0$.",
+      "The graded commutativity relation: $a \\cup b = (-1)^{n \\cdot n} b \\cup a = (-1)^{n^2} b \\cup a$.",
+      "Summary: $H^* = \\mathbb{Z}\\langle 1, a, b, a\\cup b\\rangle$ with $a^2 = b^2 = 0$ and $a \\cup b = \\pm b \\cup a$ (exterior-algebra-like for $n$ odd, commutative for $n$ even)."
+    ]
+  }
+}

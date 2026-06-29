@@ -58,6 +58,16 @@
     <!-- Problem card -->
     <article id="problem-card" class="problem-card">
 
+      <!-- Locked / preview state (future days) -->
+      <div id="locked-card" class="locked-card hidden">
+        <div class="locked-icon">&#128274;</div>
+        <h2 class="locked-title">A new class is on its way</h2>
+        <p id="locked-text" class="locked-text"></p>
+      </div>
+
+      <!-- Live problem (released days) -->
+      <div id="live-content">
+
       <div class="problem-meta">
         <span id="badge-difficulty" class="badge badge-easy">easy</span>
         <span id="badge-type" class="badge badge-type">homology</span>
@@ -108,6 +118,19 @@
 
         <div id="answer-feedback" class="answer-feedback" aria-live="polite"></div>
       </section>
+
+      <!-- Solution — revealed once the puzzle is solved -->
+      <section id="solution-section" class="solution-section hidden">
+        <div class="solution-header">
+          <span class="solution-header-icon">&#9733;</span>
+          <span class="section-label">Solution &middot; the homology class</span>
+        </div>
+        <div class="solution-answer-label">Result</div>
+        <div id="solution-answer" class="solution-answer math-content"></div>
+        <ol id="solution-steps" class="solution-steps"></ol>
+      </section>
+
+      </div><!-- /live-content -->
 
     </article>
   </main>

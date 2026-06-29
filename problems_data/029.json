@@ -1,0 +1,39 @@
+{
+  "id": 29,
+  "title": "Cohomology Ring of $\\mathbb{C}P^n$",
+  "type": "cohomology",
+  "difficulty": "hard",
+  "tags": [
+    "cup product",
+    "cohomology ring",
+    "projective spaces"
+  ],
+  "space": "\\mathbb{C}P^4",
+  "euler": 5,
+  "betti": [
+    1,
+    0,
+    1,
+    0,
+    1,
+    0,
+    1,
+    0,
+    1
+  ],
+  "functional": {
+    "latex": "2\\,\\beta_0 + 3\\,\\beta_2 + 4\\,\\beta_4 + 5\\,\\beta_6 + 6\\,\\beta_8 + (\\beta_1+\\beta_3+\\beta_5+\\beta_7)",
+    "value": 20
+  },
+  "solution": {
+    "answer": "$H^*(\\mathbb{C}P^n;\\,\\mathbb{Z}) \\cong \\mathbb{Z}[\\alpha]\\,/\\,(\\alpha^{n+1}),\\quad |\\alpha| = 2.$",
+    "steps": [
+      "By the Universal Coefficient Theorem and our computation of $H_*(\\mathbb{C}P^n)$: $H^{2k}(\\mathbb{C}P^n) \\cong \\mathbb{Z}$ for $0 \\leq k \\leq n$, all other cohomology groups zero.",
+      "Let $\\alpha \\in H^2(\\mathbb{C}P^n;\\,\\mathbb{Z})$ be a generator (the first Chern class of the tautological line bundle).",
+      "The cup product $\\alpha^k \\in H^{2k}(\\mathbb{C}P^n)$ is a generator for each $0 \\leq k \\leq n$: this follows from the Leray–Hirsch theorem applied to the fibration $\\mathbb{C}P^{n-1} \\hookrightarrow \\mathbb{C}P^n$, or from the fact that $H^*(\\mathbb{C}P^n)$ is generated as a ring by $\\alpha$.",
+      "$\\alpha^{n+1} = 0$ since $H^{2(n+1)}(\\mathbb{C}P^n) = 0$ (the complex dimension of $\\mathbb{C}P^n$ is $n$).",
+      "No further relations: $\\{1, \\alpha, \\alpha^2, \\ldots, \\alpha^n\\}$ freely generate $H^*(\\mathbb{C}P^n)$ as a $\\mathbb{Z}$-module.",
+      "Hence $H^*(\\mathbb{C}P^n;\\,\\mathbb{Z}) \\cong \\mathbb{Z}[\\alpha]/(\\alpha^{n+1})$, a truncated polynomial ring on a single degree-2 generator."
+    ]
+  }
+}

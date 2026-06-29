@@ -514,6 +514,42 @@ main {
 
 .btn-giveup:hover { color: var(--text-muted); }
 
+/* ── Locked / preview card ───────────────────────────────────────── */
+.locked-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 40px 24px;
+  gap: 14px;
+}
+
+.locked-card.hidden { display: none; }
+
+.locked-icon {
+  font-size: 44px;
+  filter: grayscale(0.2);
+  opacity: 0.85;
+}
+
+.locked-title {
+  font-size: 21px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+.locked-text {
+  font-size: 16px;
+  color: var(--text-muted);
+  max-width: 420px;
+  line-height: 1.7;
+}
+
+/* ── Archive: locked entries ─────────────────────────────────────── */
+.archive-item-locked { cursor: default; opacity: 0.6; }
+.archive-item-locked:hover { background: transparent; border-color: transparent; }
+.archive-item-locked-title { color: var(--text-dim); font-style: italic; }
+
 /* ── Solution section ────────────────────────────────────────────── */
 .solution-section {
   margin-top: 16px;

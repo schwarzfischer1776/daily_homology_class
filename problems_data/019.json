@@ -1,0 +1,33 @@
+{
+  "id": 19,
+  "title": "Homology of the 3-Torus $T^3$",
+  "type": "homology",
+  "difficulty": "medium",
+  "tags": [
+    "Künneth formula",
+    "product spaces",
+    "torus"
+  ],
+  "space": "T^3",
+  "euler": 0,
+  "betti": [
+    1,
+    3,
+    3,
+    1
+  ],
+  "functional": {
+    "latex": "\\dfrac{2\\,\\beta_1^2 + 4\\,\\beta_2^2 + 6\\,\\beta_3}{1 + \\beta_0}",
+    "value": 30
+  },
+  "solution": {
+    "answer": "$H_0 \\cong \\mathbb{Z},\\quad H_1 \\cong \\mathbb{Z}^3,\\quad H_2 \\cong \\mathbb{Z}^3,\\quad H_3 \\cong \\mathbb{Z},\\quad H_n = 0 \\text{ for } n \\geq 4.$",
+    "steps": [
+      "We know $H_*(T^2) = (\\mathbb{Z}, \\mathbb{Z}^2, \\mathbb{Z}, 0, \\ldots)$. Apply Künneth to $T^3 = T^2 \\times S^1$.",
+      "Since all homology groups are free, Tor terms vanish: $H_k(T^3) = \\bigoplus_{p+q=k} H_p(T^2) \\otimes H_q(S^1)$.",
+      "$H_q(S^1) = \\mathbb{Z}$ for $q = 0, 1$ and $0$ otherwise. So: $H_k(T^3) = H_k(T^2) \\oplus H_{k-1}(T^2)$.",
+      "$H_0 = \\mathbb{Z} \\oplus 0 = \\mathbb{Z}$, $H_1 = \\mathbb{Z}^2 \\oplus \\mathbb{Z} = \\mathbb{Z}^3$, $H_2 = \\mathbb{Z} \\oplus \\mathbb{Z}^2 = \\mathbb{Z}^3$, $H_3 = 0 \\oplus \\mathbb{Z} = \\mathbb{Z}$.",
+      "General formula: $H_k(T^n) \\cong \\mathbb{Z}^{\\binom{n}{k}}$ (exterior algebra basis), confirming $\\binom{3}{0}=1, \\binom{3}{1}=3, \\binom{3}{2}=3, \\binom{3}{3}=1$."
+    ]
+  }
+}

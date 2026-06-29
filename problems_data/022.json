@@ -1,0 +1,36 @@
+{
+  "id": 22,
+  "title": "Relative Homology $H_*(D^n, S^{n-1})$",
+  "type": "homology",
+  "difficulty": "medium",
+  "tags": [
+    "relative homology",
+    "long exact sequence",
+    "excision"
+  ],
+  "space": "(D^5,\\, S^4)",
+  "euler": -1,
+  "betti": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    1
+  ],
+  "functional": {
+    "latex": "2\\,\\beta_0 + 3\\,\\beta_1 + 4\\,\\beta_2 + 5\\,\\beta_3 + 6\\,\\beta_4 + 7\\,\\beta_5 + 5\\,\\beta_5^2",
+    "value": 12
+  },
+  "solution": {
+    "answer": "$H_n(D^n, S^{n-1}) \\cong \\mathbb{Z}$, and $H_k(D^n, S^{n-1}) = 0$ for $k \\neq n$.",
+    "steps": [
+      "Long exact sequence: $\\cdots \\to H_k(S^{n-1}) \\to H_k(D^n) \\to H_k(D^n, S^{n-1}) \\xrightarrow{\\partial} H_{k-1}(S^{n-1}) \\to \\cdots$",
+      "Since $D^n$ is contractible: $H_k(D^n) = 0$ for $k \\geq 1$ and $H_0(D^n) = \\mathbb{Z}$.",
+      "For $k \\geq 2$: $0 \\to H_k(D^n, S^{n-1}) \\xrightarrow{\\cong} H_{k-1}(S^{n-1}) \\to 0$. So $H_k(D^n, S^{n-1}) \\cong H_{k-1}(S^{n-1})$.",
+      "$H_{k-1}(S^{n-1}) = \\mathbb{Z}$ for $k-1 \\in \\{0, n-1\\}$, i.e.\\ $k = 1$ (but $H_1(D^n, S^{n-1})$ needs care) or $k = n$.",
+      "At $k = n$: $H_n(D^n, S^{n-1}) \\cong H_{n-1}(S^{n-1}) = \\mathbb{Z}$. All other groups vanish.",
+      "Alternatively: by excision, $H_*(D^n, S^{n-1}) \\cong \\tilde{H}_*(D^n/S^{n-1}) = \\tilde{H}_*(S^n)$, giving $\\mathbb{Z}$ in degree $n$."
+    ]
+  }
+}

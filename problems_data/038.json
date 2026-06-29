@@ -1,0 +1,35 @@
+{
+  "id": 38,
+  "title": "Homology of the $K3$ Surface",
+  "type": "homology",
+  "difficulty": "hard",
+  "tags": [
+    "4-manifolds",
+    "complex surfaces",
+    "Hodge theory"
+  ],
+  "space": "K3",
+  "euler": 24,
+  "betti": [
+    1,
+    0,
+    22,
+    0,
+    1
+  ],
+  "functional": {
+    "latex": "\\dfrac{2\\,\\beta_2 + 4\\,\\beta_4 + 2\\,\\beta_1 + 2\\,\\beta_3}{1 + \\beta_0}",
+    "value": 24
+  },
+  "solution": {
+    "answer": "$H_0(K3) \\cong \\mathbb{Z},\\quad H_1(K3) = 0,\\quad H_2(K3) \\cong \\mathbb{Z}^{22},\\quad H_3(K3) = 0,\\quad H_4(K3) \\cong \\mathbb{Z}.$",
+    "steps": [
+      "$K3$ is a simply-connected compact complex surface; the Euler characteristic is $\\chi(K3) = 24$ (a consequence of $c_2(K3) = 24$, i.e.\\ the second Chern class integrates to 24).",
+      "Hodge numbers: $h^{0,0} = h^{2,2} = 1$, $h^{1,0} = h^{0,1} = 0$ (since $b_1 = 0$), $h^{2,0} = h^{0,2} = 1$, $h^{1,1} = 20$. So $b_2 = h^{2,0} + h^{1,1} + h^{0,2} = 1 + 20 + 1 = 22$.",
+      "Betti numbers: $b_0 = 1, b_1 = 0, b_2 = 22, b_3 = 0, b_4 = 1$. (Check: $1 - 0 + 22 - 0 + 1 = 24 = \\chi$. ✓)",
+      "Since $\\pi_1(K3) = 1$, $H_1 = 0$. By UCT: $H_2 = \\mathbb{Z}^{22}$ (no torsion, since $H_1 = 0$ contributes no Ext).",
+      "By Poincaré duality: $H_k(K3) \\cong H^{4-k}(K3) \\cong H_{4-k}(K3)$. So $H_3 \\cong H_1 = 0$.",
+      "The intersection form on $H_2(K3;\\mathbb{Z}) \\cong \\mathbb{Z}^{22}$ is $E_8 \\oplus E_8 \\oplus H \\oplus H \\oplus H$ (three hyperbolic planes and two $E_8$ lattices). This is a deep result."
+    ]
+  }
+}

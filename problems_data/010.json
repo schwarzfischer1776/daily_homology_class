@@ -1,0 +1,30 @@
+{
+  "id": 10,
+  "title": "Are $S^1$ and $S^2$ Homeomorphic?",
+  "type": "homeomorphism",
+  "difficulty": "easy",
+  "tags": [
+    "homeomorphism invariants",
+    "spheres"
+  ],
+  "space": "S^2",
+  "euler": 2,
+  "betti": [
+    1,
+    0,
+    1
+  ],
+  "functional": {
+    "latex": "6\\,\\beta_0 + 15\\,\\beta_1 + 21\\,\\beta_2 + 2\\,\\beta_2^2",
+    "value": 29
+  },
+  "solution": {
+    "answer": "No, $S^1$ and $S^2$ are not homeomorphic.",
+    "steps": [
+      "Suppose for contradiction there exists a homeomorphism $f: S^1 \\to S^2$. Then $f_*: H_n(S^1) \\xrightarrow{\\cong} H_n(S^2)$ for all $n$.",
+      "But $H_1(S^1) \\cong \\mathbb{Z}$ while $H_1(S^2) = 0$. These groups are not isomorphic.",
+      "Contradiction. Hence $S^1 \\not\\cong S^2$.",
+      "Intuitively: any loop in $S^2$ can be contracted to a point (since $S^2$ is simply connected), but the fundamental loop in $S^1$ cannot be contracted."
+    ]
+  }
+}

@@ -1,0 +1,33 @@
+{
+  "id": 25,
+  "title": "Homology of $SO(3)$",
+  "type": "homology",
+  "difficulty": "medium",
+  "tags": [
+    "Lie groups",
+    "projective spaces",
+    "homeomorphism"
+  ],
+  "space": "SO(3)",
+  "euler": 0,
+  "betti": [
+    1,
+    0,
+    0,
+    1
+  ],
+  "functional": {
+    "latex": "6\\,\\beta_0 + 8\\,\\beta_1 + 10\\,\\beta_2 + 12\\,\\beta_3 + 2\\,\\beta_3^2",
+    "value": 20
+  },
+  "solution": {
+    "answer": "$H_0(SO(3)) \\cong \\mathbb{Z},\\quad H_1(SO(3)) \\cong \\mathbb{Z}/2,\\quad H_2(SO(3)) = 0,\\quad H_3(SO(3)) \\cong \\mathbb{Z}.$",
+    "steps": [
+      "Represent a rotation by $(\\mathbf{u}, \\theta)$ with $\\mathbf{u} \\in S^2$ the axis and $\\theta \\in [0,\\pi]$ the angle. The identity corresponds to any $(\\mathbf{u}, 0)$; a $\\pi$-rotation about $\\mathbf{u}$ equals that about $-\\mathbf{u}$.",
+      "This gives a homeomorphism $SO(3) \\cong D^3 / (x \\sim -x \\text{ on } \\partial D^3) = \\mathbb{R}P^3$.",
+      "By the homeomorphism: $H_*(SO(3)) \\cong H_*(\\mathbb{R}P^3) = (\\mathbb{Z}, \\mathbb{Z}/2, 0, \\mathbb{Z}, 0, \\ldots)$.",
+      "The $\\mathbb{Z}/2$ in $H_1$ captures the fact that $\\pi_1(SO(3)) = \\mathbb{Z}/2$: a $2\\pi$ rotation is contractible but a $4\\pi$ rotation is not.",
+      "The double cover $SU(2) \\cong S^3 \\to SO(3)$ confirms this: $S^3$ is simply connected and covers $SO(3)$ with fibre $\\mathbb{Z}/2$."
+    ]
+  }
+}

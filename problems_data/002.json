@@ -1,0 +1,32 @@
+{
+  "id": 2,
+  "title": "Homology of the 2-Sphere",
+  "type": "homology",
+  "difficulty": "easy",
+  "tags": [
+    "CW complex",
+    "spheres"
+  ],
+  "space": "S^2",
+  "euler": 2,
+  "betti": [
+    1,
+    0,
+    1
+  ],
+  "functional": {
+    "latex": "7\\,\\beta_0 + 12\\,\\beta_1 + 19\\,\\beta_2 + 3\\,\\beta_2^2",
+    "value": 29
+  },
+  "solution": {
+    "answer": "$H_0(S^2) \\cong \\mathbb{Z},\\quad H_2(S^2) \\cong \\mathbb{Z},\\quad H_n(S^2) = 0 \\text{ otherwise.}$",
+    "steps": [
+      "CW structure: one 0-cell $v$ and one 2-cell $e^2$ (attached by the constant map $S^1 \\to v$). No 1-cells.",
+      "Cellular chain complex: $0 \\to \\mathbb{Z} \\xrightarrow{d_2} 0 \\xrightarrow{d_1} \\mathbb{Z} \\to 0$.",
+      "All boundary maps are zero (since $C_1 = 0$ and the attaching map is degree 0).",
+      "$H_2 = \\ker(d_2)/\\operatorname{im}(d_3) = \\mathbb{Z}/0 = \\mathbb{Z}$.",
+      "$H_1 = 0/0 = 0$ (no 1-cells at all).",
+      "$H_0 = \\mathbb{Z}$ (one connected component). All $H_n = 0$ for $n \\geq 3$."
+    ]
+  }
+}

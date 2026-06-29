@@ -1,0 +1,35 @@
+{
+  "id": 27,
+  "title": "Homology of $\\mathbb{C}P^2$",
+  "type": "homology",
+  "difficulty": "medium",
+  "tags": [
+    "CW complex",
+    "projective spaces",
+    "4-manifolds"
+  ],
+  "space": "\\mathbb{C}P^2",
+  "euler": 3,
+  "betti": [
+    1,
+    0,
+    1,
+    0,
+    1
+  ],
+  "functional": {
+    "latex": "\\dfrac{4\\,\\beta_0 + 2\\,\\beta_1 + 8\\,\\beta_2 + 2\\,\\beta_3 + 6\\,\\beta_4}{1 + \\beta_2}",
+    "value": 9
+  },
+  "solution": {
+    "answer": "$H_0 \\cong \\mathbb{Z},\\quad H_2 \\cong \\mathbb{Z},\\quad H_4 \\cong \\mathbb{Z},\\quad H_k = 0 \\text{ for } k \\text{ odd or } k \\geq 5.$",
+    "steps": [
+      "$\\mathbb{C}P^2$ is a compact 4-dimensional manifold with CW structure: one 0-cell, one 2-cell, one 4-cell.",
+      "Chain complex: $0 \\to C_4 \\xrightarrow{d_4} C_2 \\xrightarrow{d_2} C_0 \\to 0$, all other $C_k = 0$.",
+      "There are no adjacent cells (e.g.\\ no 3-cells or 1-cells), so all boundary maps are trivially zero.",
+      "$H_0 = H_2 = H_4 = \\mathbb{Z}$; all odd-dimensional homology and $H_k$ for $k \\geq 5$ vanish.",
+      "$\\mathbb{C}P^2$ is a closed orientable 4-manifold: consistent with $H_4 = \\mathbb{Z}$.",
+      "Euler characteristic: $\\chi(\\mathbb{C}P^2) = 1 - 0 + 1 - 0 + 1 = 3$."
+    ]
+  }
+}

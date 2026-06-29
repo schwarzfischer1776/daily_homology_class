@@ -1,0 +1,32 @@
+{
+  "id": 41,
+  "title": "Homology of the Configuration Space $F(\\mathbb{R}^2, 2)$",
+  "type": "homology",
+  "difficulty": "hard",
+  "tags": [
+    "configuration spaces",
+    "deformation retract",
+    "braid groups"
+  ],
+  "space": "F(\\mathbb{R}^2, 2)",
+  "euler": 0,
+  "betti": [
+    1,
+    1
+  ],
+  "functional": {
+    "latex": "17\\,\\beta_0 + 19\\,\\beta_1 + 4\\,\\beta_0\\beta_1",
+    "value": 40
+  },
+  "solution": {
+    "answer": "$F(\\mathbb{R}^2,2) \\simeq S^1$, so $H_0 \\cong \\mathbb{Z}$, $H_1 \\cong \\mathbb{Z}$, $H_n = 0$ for $n \\geq 2$.",
+    "steps": [
+      "$F(\\mathbb{R}^2,2)$ is the complement of the diagonal $\\Delta = \\{(x,x)\\}$ in $(\\mathbb{R}^2)^2 \\cong \\mathbb{R}^4$.",
+      "The map $\\phi: F(\\mathbb{R}^2,2) \\to \\mathbb{R}^2 \\setminus \\{0\\}$ given by $\\phi(x_1,x_2) = x_2 - x_1$ is a homotopy equivalence. (It admits a fibre-wise deformation retraction via translation.)",
+      "$\\mathbb{R}^2 \\setminus \\{0\\} \\simeq S^1$ (via radial deformation retraction $x \\mapsto x/\\|x\\|$).",
+      "Therefore $F(\\mathbb{R}^2,2) \\simeq S^1$, giving $H_0 = H_1 = \\mathbb{Z}$, $H_n = 0$ for $n \\geq 2$.",
+      "The generator of $\\pi_1 = H_1 = \\mathbb{Z}$ is the loop where one point winds around the other: the pure braid group $P_2 = \\pi_1(F(\\mathbb{R}^2,2)) = \\mathbb{Z}$.",
+      "More generally: $F(\\mathbb{R}^2, n) \\simeq \\bigvee_{k=1}^{n-1} \\bigvee^k S^1$ (homotopy equivalent to a wedge of circles), and $H_1(F(\\mathbb{R}^2,n)) = \\mathbb{Z}^{n(n-1)/2}$."
+    ]
+  }
+}

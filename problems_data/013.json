@@ -1,0 +1,31 @@
+{
+  "id": 13,
+  "title": "Homology of $S^1 \\vee S^2$",
+  "type": "homology",
+  "difficulty": "easy",
+  "tags": [
+    "wedge sums",
+    "reduced homology"
+  ],
+  "space": "S^1 \\vee S^2",
+  "euler": 1,
+  "betti": [
+    1,
+    1,
+    1
+  ],
+  "functional": {
+    "latex": "8\\,\\beta_0 + 11\\,\\beta_1 + 13\\,\\beta_2 + 3\\,\\beta_1\\beta_2",
+    "value": 35
+  },
+  "solution": {
+    "answer": "$H_0 \\cong \\mathbb{Z},\\quad H_1 \\cong \\mathbb{Z},\\quad H_2 \\cong \\mathbb{Z},\\quad H_n = 0 \\text{ for } n \\geq 3.$",
+    "steps": [
+      "For any spaces $X, Y$ with a common basepoint, $\\tilde{H}_n(X \\vee Y) \\cong \\tilde{H}_n(X) \\oplus \\tilde{H}_n(Y)$.",
+      "$\\tilde{H}_*(S^1)$: $\\tilde{H}_1 = \\mathbb{Z}$, all other reduced groups $= 0$.",
+      "$\\tilde{H}_*(S^2)$: $\\tilde{H}_2 = \\mathbb{Z}$, all other reduced groups $= 0$.",
+      "Adding: $\\tilde{H}_1(S^1 \\vee S^2) = \\mathbb{Z}$ (from $S^1$) and $\\tilde{H}_2(S^1 \\vee S^2) = \\mathbb{Z}$ (from $S^2$).",
+      "Restoring $H_0 = \\tilde{H}_0 \\oplus \\mathbb{Z} = \\mathbb{Z}$. All higher groups vanish."
+    ]
+  }
+}

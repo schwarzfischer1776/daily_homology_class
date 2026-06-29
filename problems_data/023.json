@@ -1,0 +1,36 @@
+{
+  "id": 23,
+  "title": "Mayer–Vietoris: Homology of $S^n$",
+  "type": "homology",
+  "difficulty": "medium",
+  "tags": [
+    "Mayer-Vietoris",
+    "induction",
+    "spheres"
+  ],
+  "space": "S^6",
+  "euler": 2,
+  "betti": [
+    1,
+    0,
+    0,
+    0,
+    0,
+    0,
+    1
+  ],
+  "functional": {
+    "latex": "3\\,\\beta_0 + 2\\,\\beta_1 + 2\\,\\beta_2 + 2\\,\\beta_3 + 2\\,\\beta_4 + 2\\,\\beta_5 + 13\\,\\beta_6 + 4\\,\\beta_6^2",
+    "value": 20
+  },
+  "solution": {
+    "answer": "$H_k(S^n) \\cong \\mathbb{Z}$ for $k = 0$ and $k = n$, zero otherwise (confirmed by induction).",
+    "steps": [
+      "Let $U = S^n \\setminus \\{N\\} \\cong \\mathbb{R}^n$ and $V = S^n \\setminus \\{S\\} \\cong \\mathbb{R}^n$. Then $U \\cap V \\simeq S^{n-1}$.",
+      "Mayer–Vietoris: $\\cdots \\to H_k(U \\cap V) \\to H_k(U) \\oplus H_k(V) \\to H_k(S^n) \\xrightarrow{\\partial} H_{k-1}(U \\cap V) \\to \\cdots$",
+      "Since $U, V$ are contractible, $H_k(U) = H_k(V) = 0$ for $k \\geq 1$. The sequence for $k \\geq 2$ reduces to $0 \\to H_k(S^n) \\xrightarrow{\\cong} H_{k-1}(S^{n-1}) \\to 0$.",
+      "So $H_k(S^n) \\cong H_{k-1}(S^{n-1})$ for $k \\geq 2$. By induction (base case $S^1$: $H_1(S^1) = \\mathbb{Z}$), $H_n(S^n) = \\mathbb{Z}$.",
+      "For $k = 1$: $0 \\to H_1(S^n) \\to H_0(S^{n-1}) \\to H_0(U) \\oplus H_0(V) \\to \\cdots$ With $n \\geq 2$, $H_0(S^{n-1}) \\to \\mathbb{Z} \\oplus \\mathbb{Z}$ is injective, giving $H_1(S^n) = 0$."
+    ]
+  }
+}

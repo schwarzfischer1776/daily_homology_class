@@ -1,0 +1,35 @@
+{
+  "id": 32,
+  "title": "Homology of Lens Spaces $L(p,q)$",
+  "type": "homology",
+  "difficulty": "hard",
+  "tags": [
+    "lens spaces",
+    "CW complex",
+    "torsion",
+    "3-manifolds"
+  ],
+  "space": "L(5,2)",
+  "euler": 0,
+  "betti": [
+    1,
+    0,
+    0,
+    1
+  ],
+  "functional": {
+    "latex": "7\\,\\beta_0 + 9\\,\\beta_1 + 11\\,\\beta_2 + 13\\,\\beta_3",
+    "value": 20
+  },
+  "solution": {
+    "answer": "$H_0(L(p,q)) \\cong \\mathbb{Z},\\quad H_1(L(p,q)) \\cong \\mathbb{Z}/p,\\quad H_2(L(p,q)) = 0,\\quad H_3(L(p,q)) \\cong \\mathbb{Z}.$",
+    "steps": [
+      "$L(p,q)$ is a closed orientable 3-manifold, so $H_3 = \\mathbb{Z}$ (fundamental class) and $H_0 = \\mathbb{Z}$ (connected).",
+      "The CW structure has one cell in each dimension $0, 1, 2, 3$. The boundary maps are: $d_1 = 0$ (the 1-cell is a loop generating $\\pi_1 = \\mathbb{Z}/p$), $d_2 = \\times p$, $d_3 = 0$.",
+      "Chain complex: $0 \\to \\mathbb{Z} \\xrightarrow{0} \\mathbb{Z} \\xrightarrow{\\times p} \\mathbb{Z} \\xrightarrow{0} \\mathbb{Z} \\to 0$.",
+      "$H_3 = \\ker(0)/0 = \\mathbb{Z}$; $H_2 = \\ker(\\times p)/\\operatorname{im}(0) = 0$; $H_1 = \\ker(0)/\\operatorname{im}(\\times p) = \\mathbb{Z}/p$.",
+      "Note: $H_*(L(p,q))$ depends only on $p$, not on $q$. To distinguish $L(p,q)$ from $L(p,q')$ one needs finer invariants (linking form, Reidemeister torsion).",
+      "Example: $L(2,1) \\cong \\mathbb{R}P^3$. Indeed $H_*(L(2,1)) = (\\mathbb{Z}, \\mathbb{Z}/2, 0, \\mathbb{Z}) = H_*(\\mathbb{R}P^3)$. ✓"
+    ]
+  }
+}

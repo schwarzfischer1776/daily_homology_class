@@ -1,0 +1,32 @@
+{
+  "id": 24,
+  "title": "Are $\\mathbb{R}P^2$ and $T^2$ Homeomorphic?",
+  "type": "homeomorphism",
+  "difficulty": "medium",
+  "tags": [
+    "homeomorphism invariants",
+    "surfaces",
+    "torsion"
+  ],
+  "space": "\\mathbb{R}P^2",
+  "euler": 1,
+  "betti": [
+    1,
+    0,
+    0
+  ],
+  "functional": {
+    "latex": "16\\,\\beta_0 + 7\\,\\beta_1 + 9\\,\\beta_2 + 3\\,\\beta_1\\beta_2",
+    "value": 16
+  },
+  "solution": {
+    "answer": "No, $\\mathbb{R}P^2$ and $T^2$ are not homeomorphic.",
+    "steps": [
+      "$H_1(\\mathbb{R}P^2) \\cong \\mathbb{Z}/2$ (finite group), while $H_1(T^2) \\cong \\mathbb{Z}^2$ (free abelian of rank 2).",
+      "These groups are not isomorphic: $\\mathbb{Z}/2$ has order 2, whereas $\\mathbb{Z}^2$ is infinite.",
+      "A homeomorphism would induce an isomorphism on $H_1$, which is impossible here.",
+      "Additional invariant: $H_2(\\mathbb{R}P^2) = 0$ (non-orientable) vs.\\ $H_2(T^2) = \\mathbb{Z}$ (orientable).",
+      "In fact $\\mathbb{R}P^2$ and $T^2$ have different genus, different Euler characteristics ($\\chi(\\mathbb{R}P^2) = 1$, $\\chi(T^2) = 0$), and different orientability."
+    ]
+  }
+}
